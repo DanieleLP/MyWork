@@ -1,39 +1,59 @@
 import React, { useState, useEffect } from "react";
-import Select from "react-select";
+import MultiSelect from "react-multi-select-component";
+import { db } from "../../../firebase";
+import { Close } from "@material-ui/icons";
 import "./AddProjectModalComponent.css";
 const AddProjectModalComponent = ({ isShowing, hide }) => {
   const [name, setName] = useState("");
-  const [error, setError] = useState("");
   const [participants, setParticipants] = useState([]);
+  const [options, setOptions] = useState({});
+  const [error, setError] = useState("");
 
-  const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
+  useEffect(() => {
+    db.collection("users").onSnapshot((snapshot) => {
+      setOptions(
+        snapshot.docs.map((doc) => ({
+          label: `${doc.data().name} ${doc.data().lastName}`,
+          value: doc.data().uid,
+        }))
+      );
+    });
+  }, []);
 
-  const styles = {
-    option: (provided, state) => ({
-      ...provided,
-      borderBottom: "1px dotted pink",
-      color: state.isSelected ? "red" : "blue",
-      padding: 10,
-    }),
-    control: () => ({
-      // none of react-select's styles are passed to <Control />
-      width: 500,
-    }),
-    singleValue: (provided, state) => {
-      const opacity = state.isDisabled ? 0.5 : 1;
-      const transition = "opacity 300ms";
+  const overrideStrings = {
+    selectSomeItems: "Seleziona partecipanti...",
+    allItemsAreSelected: "Hai selezionato tutti i partecipanti.",
+    selectAll: "Seleziona tutti.",
+    search: "Cerca...",
+    clearSearch: "Cancella",
+  };
 
-      return { ...provided, opacity, transition };
-    },
+  const createProject = (e) => {
+    e.preventDefault();
+    if (name) {
+      db.collection("projects").add({
+        name,
+        participants: participants.map((participant) => participant.value),
+      });
+    }
+    hide();
+    setName("");
+    setParticipants("");
   };
 
   return isShowing ? (
-    <div className="addProjectModalComponent">
+    <div
+      className="addProjectModalComponent"
+      onClick={(e) => {
+        if (e.target.className === "addProjectModalComponent") {
+          hide();
+        }
+      }}
+    >
       <div className="addProjectModalComponent__container">
+        <div className="addProjectModalComponent__close">
+          <Close onClick={hide} />
+        </div>
         <div className="addProjectModalComponent__header">
           <h3>Aggiungi un progetto</h3>
           <span className="addProjectModalComponent__error">{error}</span>
@@ -47,14 +67,18 @@ const AddProjectModalComponent = ({ isShowing, hide }) => {
               placeholder="Inserisci il nome del progetto"
               onChange={(e) => setName(e.currentTarget.value)}
             />
-            <Select
-              isMulti={true}
-              defaultValue={participants}
-              onChange={setParticipants}
+            <p>Seleziona i partecipanti:</p>
+            <MultiSelect
+              overrideStrings={overrideStrings}
               options={options}
-              styles={styles}
+              value={participants}
+              onChange={setParticipants}
+              labelledBy={"Seleziona i partecipanti"}
             />
-            <div className="addProjectModalComponent__btn" onClick={(e) => {}}>
+            <div
+              className="addProjectModalComponent__btn"
+              onClick={(e) => createProject(e)}
+            >
               Aggiungi
             </div>
           </form>

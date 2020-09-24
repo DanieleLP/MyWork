@@ -8,7 +8,6 @@ import RegisterComponent from "./components/Auth/RegisterComponent";
 
 const App = () => {
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
   return currentUser ? (
     <div className="App">
       <SidebarComponent user={currentUser} />

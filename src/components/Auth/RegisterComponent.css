@@ -55,8 +55,8 @@
 }
 
 .registerComponent__content input:focus,
-input:active,
-input:hover {
+.registerComponent__content input:active,
+.registerComponent__content input:hover {
     background-color: var(--main-color-accent-secondary);
     border: none;
     transition: all .2s;

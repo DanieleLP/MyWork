@@ -55,8 +55,8 @@
 }
 
 .loginComponent__content input:focus,
-input:active,
-input:hover {
+.loginComponent__content input:active,
+.loginComponent__content input:hover {
     background-color: var(--main-color-accent-secondary);
     border: none;
     transition: all .2s;
