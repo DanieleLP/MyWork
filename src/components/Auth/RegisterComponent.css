@@ -103,3 +103,11 @@ input:hover {
 .registerComponent__error {
     font-size: 12px;
 }
+
+@media (max-width: 600px) {
+    .registerComponent__container {
+        padding: 0;
+        height: 100%;
+        width: 100%;
+    }
+}

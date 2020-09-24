@@ -11,7 +11,7 @@ const errorParser = (e) => {
         case "auth/invalid-email":
             return "L'indirizzo mail fornito non è valido!"
         default:
-            return "Si è verificato un rrore durante la procedura di autenticazione!"
+            return "Si è verificato un errore durante la procedura di autenticazione!"
     }
 }
 

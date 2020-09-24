@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import firebaseApp from "../../firebase";
 import errorParser from "../../libs/errorParser";
 import "./RegisterComponent.css";
@@ -8,12 +8,18 @@ const RegisterComponent = () => {
   const [password, setPassword] = useState("");
   const [repPassword, setRepPassword] = useState("");
   const [error, setError] = useState("");
+  let history = useHistory();
   const register = (e) => {
     e.preventDefault();
-    if (password === repPassword && password.length > 5) {
+    if (password !== repPassword) {
+      setError("Le password devono corrispondere!");
+    } else if (password.length < 6) {
+      setError("La password deve essere composta da almeno 6 caratteri!");
+    } else {
       firebaseApp
         .auth()
         .createUserWithEmailAndPassword(email, password)
+        .then(() => history.push("/"))
         .catch((error) => {
           setError(errorParser(error.code));
         });
@@ -35,6 +41,7 @@ const RegisterComponent = () => {
               value={email}
               placeholder="Inserisci un indirizzo email"
               onChange={(e) => setEmail(e.currentTarget.value)}
+              onKeyDown={(e) => (e.keyCode === 13 ? register(e) : null)}
             />
             <input
               type="password"
@@ -42,6 +49,7 @@ const RegisterComponent = () => {
               value={password}
               placeholder="Crea una password"
               onChange={(e) => setPassword(e.currentTarget.value)}
+              onKeyDown={(e) => (e.keyCode === 13 ? register(e) : null)}
             />
             <input
               type="password"
@@ -49,6 +57,7 @@ const RegisterComponent = () => {
               value={repPassword}
               placeholder="Re-inserisci la tua password"
               onChange={(e) => setRepPassword(e.currentTarget.value)}
+              onKeyDown={(e) => (e.keyCode === 13 ? register(e) : null)}
             />
             <div
               className="registerComponent__btn"
