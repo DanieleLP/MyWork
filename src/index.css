@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap");
+
+:root {
+  --heading: "Merriweather", serif;
+  --main-color: rgb(208, 69, 64, 0.8);
+  --main-color-accent: rgb(208, 69, 64);
+  --main-color-accent-secondary: rgb(207, 84, 80);
+  /* --main-color: rgb(24, 81, 94, 0.95);
+  --main-color-accent: rgb(24, 81, 94, 1); */
+}
+
+* {
+  font-family: var(--heading);
+  padding: 0;
+  margin: 0;
+}
