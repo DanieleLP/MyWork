@@ -1,4 +1,4 @@
-import * as firebase from "firebase/app";
+import firebase from "firebase";
 import "firebase/auth";
 
 const firebaseApp = firebase.initializeApp({
@@ -11,5 +11,11 @@ const firebaseApp = firebase.initializeApp({
     appId: "1:409311604436:web:8e9564fdd64c4546305541",
     measurementId: "G-GS7L4PYYSE"
 });
+
+const db = firebaseApp.firestore();
+
+export {
+    db
+};
 
 export default firebaseApp;
