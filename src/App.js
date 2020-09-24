@@ -1,20 +1,21 @@
 import React, { useContext } from "react";
 import "./App.css";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { AuthContext } from "./providers/Auth";
-import firebaseApp from "./firebase";
+import SidebarComponent from "./components/Application/Sidebar/SidebarComponent";
 import LoginComponent from "./components/Auth/LoginComponent";
 import RegisterComponent from "./components/Auth/RegisterComponent";
 
 const App = () => {
   const { currentUser } = useContext(AuthContext);
+  console.log(currentUser);
   return currentUser ? (
-    <>
-      <h1>Home</h1>
-      <button onClick={() => firebaseApp.auth().signOut()}>Sign out</button>
-    </>
+    <div className="App">
+      <SidebarComponent user={currentUser} />
+    </div>
   ) : (
     <div className="App">
+      <Redirect to="/login" />
       <Switch>
         <Route exact path="/login">
           <LoginComponent />
