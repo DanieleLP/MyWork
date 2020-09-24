@@ -48,4 +48,33 @@
 .sidebarComponent__projects h3 {
     color: white;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    margin-bottom: .5rem;
+}
+
+.sidebarComponent__projects h3 .MuiSvgIcon-root {
+    margin-right: .4rem;
+}
+
+.sidebarComponent__addProject {
+    margin-top: 1rem;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1.5rem;
+    border-radius: .3rem;
+    background-color: var(--main-color-accent-secondary);
+    transition: all .2s;
+}
+
+.sidebarComponent__addProject .MuiSvgIcon-root {
+    fill: white;
+}
+
+.sidebarComponent__addProject:hover {
+    background-color: var(--main-color-accent);
+    cursor: pointer;
+    transition: all .2s;
 }

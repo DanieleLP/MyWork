@@ -1,0 +1,94 @@
+.addProjectModalComponent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.addProjectModalComponent__container {
+  background-color: white;
+  width: 50%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.3rem;
+  padding: 3rem;
+}
+
+.addProjectModalComponent__header {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 25%;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.addProjectModalComponent__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75%;
+  width: 100%;
+}
+
+.addProjectModalComponent__content form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.addProjectModalComponent__content input {
+  background-color: var(--main-color-accent);
+  border: 0;
+  padding: 0.5rem;
+  width: 75%;
+  margin: 0.5rem;
+  color: white;
+  text-align: center;
+  transition: all 0.2s;
+  border: none;
+}
+
+.addProjectModalComponent__content input:focus,
+input:active,
+input:hover {
+  background-color: var(--main-color-accent-secondary);
+  border: none;
+  transition: all 0.2s;
+}
+
+.addProjectModalComponent__content input::placeholder {
+  color: white;
+  text-align: center;
+}
+
+.addProjectModalComponent__btn {
+  width: 75%;
+  color: white;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--main-color-accent);
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.addProjectModalComponent__btn:hover {
+  background-color: var(--main-color-accent-secondary);
+  transition: all 0.2s;
+}

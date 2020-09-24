@@ -1,9 +1,13 @@
 import React from "react";
 import "./SidebarProjectComponent.css";
+import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 const SidebarProjectComponent = (props) => {
   return (
     <div className="sidebarProjectComponent">
-      <p>{props.name}</p>
+      <p>
+        <ArrowRightIcon />
+        {props.name}
+      </p>
     </div>
   );
 };

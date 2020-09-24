@@ -4,10 +4,17 @@ import firebaseApp, { db } from "../../../firebase";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SettingsIcon from "@material-ui/icons/Settings";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import AppsIcon from "@material-ui/icons/Apps";
+import AddIcon from "@material-ui/icons/Add";
 import SidebarProjectComponent from "./SidebarProjectComponent";
+import AddProjectModalComponent from "../Modal/AddProjectModalComponent";
+import useModal from "../../../hooks/useModal";
 
 const SidebarComponent = (props) => {
   const [projects, setProjects] = useState([]);
+  const { show, toggle } = useModal();
+
+  console.log(show);
 
   useEffect(() => {
     db.collection("projects").onSnapshot((snapshot) => {
@@ -19,6 +26,7 @@ const SidebarComponent = (props) => {
       );
     });
   }, []);
+
   return (
     <div className="sidebarComponent">
       <div className="sidebarComponent__container">
@@ -32,12 +40,18 @@ const SidebarComponent = (props) => {
           </div>
         </div>
         <div className="sidebarComponent__projects">
-          <h3>I tuoi progetti</h3>
+          <h3>
+            <AppsIcon />I tuoi progetti
+          </h3>
           {projects.map((project) => (
             <SidebarProjectComponent name={project.name} />
           ))}
+          <div className="sidebarComponent__addProject" onClick={toggle}>
+            <AddIcon />
+          </div>
         </div>
       </div>
+      <AddProjectModalComponent isShowing={show} hide={toggle} />
     </div>
   );
 };
