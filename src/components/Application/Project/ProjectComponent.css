@@ -30,3 +30,8 @@
     font-size: 36px;
     pointer-events: none;
 }
+
+.projectComponent__activities {
+    display: flex;
+    flex-wrap: wrap;
+}

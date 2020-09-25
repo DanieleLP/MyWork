@@ -1,0 +1,25 @@
+.projectActivityComponent {
+    width: 20rem;
+    height: 10rem;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    border-radius: .3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.projectActivityComponent.complete {
+    border: 1px solid var(--complete-color);
+    background-color: var(--complete-color-bg);
+}
+
+.projectActivityComponent.inProgress {
+    border: 1px solid var(--in-progress-color);
+    background-color: var(--in-progress-color-bg);
+}
+
+.projectActivityComponent.backlog {
+    border: 1px solid var(--backlog-color);
+    background-color: var(--backlog-color-bg);
+}

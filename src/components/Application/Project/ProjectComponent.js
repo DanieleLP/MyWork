@@ -4,6 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { AuthContext } from "../../../providers/Auth";
 import { db } from "../../../firebase";
 import AddIcon from "@material-ui/icons/Add";
+import ProjectActivityComponent from "./ProjectActivityComponent";
 
 const ProjectComponent = () => {
   const { currentUser } = useContext(AuthContext);
@@ -33,13 +34,27 @@ const ProjectComponent = () => {
     <div className="projectComponent">
       <div className="projectComponent__container">
         <h2>
-          <span className="projectComponent__heading-nb">Progetto</span>
+          <span className="projectComponent__heading-nb">Progetto </span>
           {project.name}
         </h2>
         <p>
           Partecipanti:
           {project.participants}
         </p>
+        <div className="projectComponent__activities">
+          <ProjectActivityComponent
+            status="backlog"
+            title="Attività in stato 'BACKLOG'"
+          />
+          <ProjectActivityComponent
+            status="inProgress"
+            title="Attività in stato 'IN PROGRESSO'"
+          />
+          <ProjectActivityComponent
+            status="complete"
+            title="Attività in stato 'COMPLETATA'"
+          />
+        </div>
         <div className="projectComponent__activityFab">
           <AddIcon />
         </div>
