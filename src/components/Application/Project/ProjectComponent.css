@@ -1,6 +1,7 @@
 .projectComponent {
     height: 100vh;
     width: 100%;
+    overflow-y: scroll;
 }
 
 .projectComponent__container {
@@ -33,5 +34,25 @@
 
 .projectComponent__activities {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
+}
+
+.projectComponent__activities-backlog {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.projectComponent__activities-inProgress {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.projectComponent__activities-backlog {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.projectComponent__participants {
+    font-weight: 700;
 }

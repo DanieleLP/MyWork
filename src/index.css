@@ -2,9 +2,9 @@
 
 :root {
   --heading: "Merriweather", serif;
-  /* --main-color: rgb(208, 69, 64, 0.95);
+  --main-color: rgb(208, 69, 64, 0.95);
   --main-color-accent: rgb(208, 69, 64, 1);
-  --main-color-accent-secondary: rgb(208, 69, 64, 0.98); */
+  --main-color-accent-secondary: rgb(208, 69, 64, 0.98);
   --secondary-color: #BDBDBD;
   --backlog-color: rgb(0, 176, 255);
   --in-progress-color: rgb(255, 202, 40);
@@ -12,9 +12,9 @@
   --backlog-color-bg: rgb(0, 176, 255, 0.3);
   --in-progress-color-bg: rgb(255, 202, 40, 0.3);
   --complete-color-bg: rgb(100, 221, 23, 0.3);
-  --main-color: rgb(24, 81, 94, 0.95);
+  /* --main-color: rgb(24, 81, 94, 0.95);
   --main-color-accent: rgb(24, 81, 94, 1);
-  --main-color-accent-secondary: rgb(24, 81, 94, 0.98);
+  --main-color-accent-secondary: rgb(24, 81, 94, 0.98); */
 
 }
 

@@ -18,16 +18,20 @@ const SidebarComponent = (props) => {
 
   useEffect(() => {
     const uid = props.user.uid;
-    db.collection("projects")
-      .where("participants", "array-contains", uid)
-      .onSnapshot((querySnapshot) => {
-        setProjects(
-          querySnapshot.docs.map((doc) => ({
-            id: doc.id,
-            name: doc.data().name,
+    db.collection("projects").onSnapshot((snapshot) => {
+      setProjects(
+        snapshot.docs
+          .filter(function (projects) {
+            return projects.data().participants.some(function (participant) {
+              return participant.uid === uid;
+            });
+          })
+          .map((project) => ({
+            id: project.id,
+            ...project.data(),
           }))
-        );
-      });
+      );
+    });
   }, [props]);
 
   return (

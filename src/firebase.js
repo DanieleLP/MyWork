@@ -14,9 +14,12 @@ const firebaseApp = firebase.initializeApp({
 
 const db = firebaseApp.firestore();
 const FieldPath = firebase.firestore.FieldPath;
+const Timestamp = firebase.firestore.FieldValue.serverTimestamp();
+
 export {
     db,
-    FieldPath
+    FieldPath,
+    Timestamp,
 };
 
 export default firebaseApp;

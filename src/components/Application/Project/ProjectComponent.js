@@ -1,34 +1,25 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ProjectComponent.css";
-import { useParams, useHistory } from "react-router-dom";
-import { AuthContext } from "../../../providers/Auth";
+import { useParams } from "react-router-dom";
 import { db } from "../../../firebase";
 import AddIcon from "@material-ui/icons/Add";
 import ProjectActivityComponent from "./ProjectActivityComponent";
+import AddActivityModalComponent from "../Modal/AddActivityModalComponent";
+import useModal from "../../../hooks/useModal";
 
 const ProjectComponent = () => {
-  const { currentUser } = useContext(AuthContext);
   const { projectId } = useParams();
   const [project, setProject] = useState({});
-  const history = useHistory();
+  const { show, toggle } = useModal();
 
   useEffect(() => {
     db.collection("projects")
       .doc(projectId)
-      .onSnapshot((snapshot) => {
-        if (!snapshot || snapshot === undefined) {
-          history.push("/error");
-        } else if (
-          snapshot.data() === undefined ||
-          !snapshot.data().participants.includes(currentUser.uid)
-        ) {
-          history.push("/error");
-        } else {
-          setProject(snapshot.data());
-        }
+      .get()
+      .then((project) => {
+        setProject(project.data());
       });
-  }, [currentUser.uid, history, projectId]);
-  console.log(project);
+  }, [projectId]);
 
   return (
     <div className="projectComponent">
@@ -39,26 +30,47 @@ const ProjectComponent = () => {
         </h2>
         <p>
           Partecipanti:
-          {project.participants}
+          {project.participants &&
+            project.participants.map((participant, i, arr) => (
+              <span
+                key={participant.uid}
+                className="projectComponent__participants"
+              >
+                {" "}
+                {participant.name}
+                {!i && arr.length !== 1 ? "," : ""}
+              </span>
+            ))}
         </p>
         <div className="projectComponent__activities">
-          <ProjectActivityComponent
-            status="backlog"
-            title="Attività in stato 'BACKLOG'"
-          />
-          <ProjectActivityComponent
-            status="inProgress"
-            title="Attività in stato 'IN PROGRESSO'"
-          />
-          <ProjectActivityComponent
-            status="complete"
-            title="Attività in stato 'COMPLETATA'"
-          />
+          <div className="projectComponent__activities-backlog">
+            <ProjectActivityComponent
+              status="backlog"
+              title="Attività in stato 'BACKLOG'"
+            />
+          </div>
+          <div className="projectComponent__activities-inProgress">
+            <ProjectActivityComponent
+              status="inProgress"
+              title="Attività in stato 'IN PROGRESSO'"
+            />
+          </div>
+          <div className="projectComponent__activities-complete">
+            <ProjectActivityComponent
+              status="complete"
+              title="Attività in stato 'COMPLETATA'"
+            />
+          </div>
         </div>
-        <div className="projectComponent__activityFab">
+        <div className="projectComponent__activityFab" onClick={toggle}>
           <AddIcon />
         </div>
       </div>
+      <AddActivityModalComponent
+        projectId={projectId}
+        isShowing={show}
+        hide={toggle}
+      />
     </div>
   );
 };

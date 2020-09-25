@@ -4,7 +4,8 @@ import "./ProjectActivityComponent.css";
 const ProjectActivityComponent = (props) => {
   return (
     <div className={`projectActivityComponent ${props.status}`}>
-      {props.title}
+      <h4>{props.title}</h4>
+      <span>descrizione attività</span>
     </div>
   );
 };

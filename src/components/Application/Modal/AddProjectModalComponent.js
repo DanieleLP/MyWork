@@ -32,7 +32,10 @@ const AddProjectModalComponent = ({ isShowing, hide }) => {
     if (name) {
       db.collection("projects").add({
         name,
-        participants: participants.map((participant) => participant.value),
+        participants: participants.map((participant) => ({
+          name: participant.label,
+          uid: participant.value,
+        })),
       });
     }
     hide();
