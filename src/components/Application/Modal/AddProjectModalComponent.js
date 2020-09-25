@@ -6,8 +6,7 @@ import "./AddProjectModalComponent.css";
 const AddProjectModalComponent = ({ isShowing, hide }) => {
   const [name, setName] = useState("");
   const [participants, setParticipants] = useState([]);
-  const [options, setOptions] = useState({});
-  const [error, setError] = useState("");
+  const [options, setOptions] = useState([]);
 
   useEffect(() => {
     db.collection("users").onSnapshot((snapshot) => {
@@ -56,7 +55,6 @@ const AddProjectModalComponent = ({ isShowing, hide }) => {
         </div>
         <div className="addProjectModalComponent__header">
           <h3>Aggiungi un progetto</h3>
-          <span className="addProjectModalComponent__error">{error}</span>
         </div>
         <div className="addProjectModalComponent__content">
           <form>
@@ -69,6 +67,7 @@ const AddProjectModalComponent = ({ isShowing, hide }) => {
             />
             <p>Seleziona i partecipanti:</p>
             <MultiSelect
+              se
               overrideStrings={overrideStrings}
               options={options}
               value={participants}

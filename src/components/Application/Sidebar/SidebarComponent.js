@@ -13,21 +13,20 @@ import useModal from "../../../hooks/useModal";
 const SidebarComponent = (props) => {
   const [projects, setProjects] = useState([]);
   const { show, toggle } = useModal();
-  const uid = props.user.uid;
 
   useEffect(() => {
+    const uid = props.user.uid;
     db.collection("projects")
       .where("participants", "array-contains", uid)
-      .get()
-      .then((snapshot) => {
+      .onSnapshot((querySnapshot) => {
         setProjects(
-          snapshot.docs.map((doc) => ({
+          querySnapshot.docs.map((doc) => ({
             id: doc.id,
             name: doc.data().name,
           }))
         );
       });
-  }, []);
+  }, [props]);
 
   return (
     <div className="sidebarComponent">
@@ -46,7 +45,11 @@ const SidebarComponent = (props) => {
             <AppsIcon />I tuoi progetti
           </h3>
           {projects.map((project) => (
-            <SidebarProjectComponent key={project.id} name={project.name} />
+            <SidebarProjectComponent
+              key={project.id}
+              id={project.id}
+              name={project.name}
+            />
           ))}
           <div className="sidebarComponent__addProject" onClick={toggle}>
             <AddIcon />
