@@ -13,9 +13,10 @@ const firebaseApp = firebase.initializeApp({
 });
 
 const db = firebaseApp.firestore();
-
+const FieldPath = firebase.firestore.FieldPath;
 export {
-    db
+    db,
+    FieldPath
 };
 
 export default firebaseApp;

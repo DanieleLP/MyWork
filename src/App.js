@@ -6,6 +6,7 @@ import SidebarComponent from "./components/Application/Sidebar/SidebarComponent"
 import ProjectComponent from "./components/Application/Project/ProjectComponent";
 import LoginComponent from "./components/Auth/LoginComponent";
 import RegisterComponent from "./components/Auth/RegisterComponent";
+import ErrorComponent from "./components/Application/Error/ErrorComponent";
 
 const App = () => {
   const { currentUser } = useContext(AuthContext);
@@ -15,6 +16,9 @@ const App = () => {
       <Switch>
         <Route path="/projects/:projectId">
           <ProjectComponent />
+        </Route>
+        <Route exact path="/error">
+          <ErrorComponent />
         </Route>
       </Switch>
     </div>

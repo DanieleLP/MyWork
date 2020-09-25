@@ -4,5 +4,29 @@
 }
 
 .projectComponent__container {
-    height: 100vh;
+    padding: 2rem;
+}
+
+.projectComponent__heading-nb {
+    font-weight: normal;
+}
+
+.projectComponent__activityFab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-color);
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    bottom: 1rem;
+    right: 1rem;
+    position: fixed;
+    cursor: pointer;
+}
+
+.projectComponent__activityFab .MuiSvgIcon-root {
+    fill: white;
+    font-size: 36px;
+    pointer-events: none;
 }

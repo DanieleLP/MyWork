@@ -1,14 +1,48 @@
-import React from "react";
+import React, { useEffect, useContext, useState } from "react";
 import "./ProjectComponent.css";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+import { AuthContext } from "../../../providers/Auth";
+import { db } from "../../../firebase";
+import AddIcon from "@material-ui/icons/Add";
 
 const ProjectComponent = () => {
+  const { currentUser } = useContext(AuthContext);
   const { projectId } = useParams();
+  const [project, setProject] = useState({});
+  const history = useHistory();
+
+  useEffect(() => {
+    db.collection("projects")
+      .doc(projectId)
+      .onSnapshot((snapshot) => {
+        if (!snapshot || snapshot === undefined) {
+          history.push("/error");
+        } else if (
+          snapshot.data() === undefined ||
+          !snapshot.data().participants.includes(currentUser.uid)
+        ) {
+          history.push("/error");
+        } else {
+          setProject(snapshot.data());
+        }
+      });
+  }, [currentUser.uid, history, projectId]);
+  console.log(project);
 
   return (
     <div className="projectComponent">
       <div className="projectComponent__container">
-        <p>Welcome to the {projectId} project</p>
+        <h2>
+          <span className="projectComponent__heading-nb">Progetto</span>
+          {project.name}
+        </h2>
+        <p>
+          Partecipanti:
+          {project.participants}
+        </p>
+        <div className="projectComponent__activityFab">
+          <AddIcon />
+        </div>
       </div>
     </div>
   );

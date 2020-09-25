@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import "./SidebarComponent.css";
 import firebaseApp, { db } from "../../../firebase";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
@@ -13,6 +14,7 @@ import useModal from "../../../hooks/useModal";
 const SidebarComponent = (props) => {
   const [projects, setProjects] = useState([]);
   const { show, toggle } = useModal();
+  const history = useHistory();
 
   useEffect(() => {
     const uid = props.user.uid;
@@ -35,8 +37,12 @@ const SidebarComponent = (props) => {
           <h2>MyWork</h2>
           <p>{props.user.email}</p>
           <div className="sidebarComponent__header-addons">
-            <NotificationsIcon />
-            <SettingsIcon />
+            <NotificationsIcon
+              onClick={() => history.push(`/notifications/${props.user.uid}`)}
+            />
+            <SettingsIcon
+              onClick={() => history.push(`/settings/${props.user.uid}`)}
+            />
             <ExitToAppIcon onClick={() => firebaseApp.auth().signOut()} />
           </div>
         </div>
