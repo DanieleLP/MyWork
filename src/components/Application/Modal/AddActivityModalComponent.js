@@ -105,7 +105,7 @@ const AddActivityModalComponent = ({ projectId, isShowing, hide }) => {
             >
               <option value="backlog">BACKLOG</option>
               <option value="inProgress">IN PROGRESSO</option>
-              <option value="completed">COMPLETATA</option>
+              <option value="complete">COMPLETATA</option>
             </select>
             <p>Creatore dell'attività:</p>
             <input

@@ -36,6 +36,11 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    padding: 2rem;
+}
+
+.projectComponent__activities h4 {
+    margin-top: 1.5rem;
 }
 
 .projectComponent__activities-backlog {
@@ -48,7 +53,7 @@
     flex-wrap: wrap;
 }
 
-.projectComponent__activities-backlog {
+.projectComponent__activities-complete {
     display: flex;
     flex-wrap: wrap;
 }

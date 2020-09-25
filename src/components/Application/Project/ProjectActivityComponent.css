@@ -1,14 +1,17 @@
 .projectActivityComponent {
     width: 20rem;
-    height: 10rem;
-    margin-top: 1rem;
+    min-height: 8rem;
+    height: auto;
+    margin-top: 1.5rem;
     margin-right: 1rem;
     border-radius: .3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: .5rem;
 }
+
 
 .projectActivityComponent.complete {
     border: 1px solid var(--complete-color);
@@ -23,4 +26,36 @@
 .projectActivityComponent.backlog {
     border: 1px solid var(--backlog-color);
     background-color: var(--backlog-color-bg);
+}
+
+.projectActivityComponent__title {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 33%;
+    width: 100%;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.projectActivityComponent__description {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 33%;
+    width: 100%;
+    font-weight: 300;
+    font-size: 14px;
+    text-align: justify;
+}
+
+.projectActivityComponent__timestamp {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 33%;
+    width: 100%;
+    font-weight: 300;
+    font-size: 10px;
 }

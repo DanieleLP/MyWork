@@ -10,17 +10,31 @@ import useModal from "../../../hooks/useModal";
 const ProjectComponent = () => {
   const { projectId } = useParams();
   const [project, setProject] = useState({});
+  const [activities, setActivities] = useState("");
+
   const { show, toggle } = useModal();
 
   useEffect(() => {
     db.collection("projects")
       .doc(projectId)
       .get()
-      .then((project) => {
-        setProject(project.data());
+      .then((projects) => {
+        setProject(projects.data());
+      });
+    db.collection("projects")
+      .doc(projectId)
+      .collection("activities")
+      .onSnapshot((act) => {
+        setActivities(
+          act.docs.map((activity) => ({
+            ...activity.data(),
+          }))
+        );
       });
   }, [projectId]);
 
+  console.log(project.participants);
+  console.log(activities);
   return (
     <div className="projectComponent">
       <div className="projectComponent__container">
@@ -43,23 +57,59 @@ const ProjectComponent = () => {
             ))}
         </p>
         <div className="projectComponent__activities">
+          <h4>Attività in "BACKLOG"</h4>
+          <hr />
           <div className="projectComponent__activities-backlog">
-            <ProjectActivityComponent
-              status="backlog"
-              title="Attività in stato 'BACKLOG'"
-            />
+            {activities !== "" &&
+              activities
+                .filter((activity) => activity.status === "backlog")
+                .map((activity) => (
+                  <ProjectActivityComponent
+                    status={activity.status}
+                    name={activity.name}
+                    description={activity.description}
+                    timestamp={activity.timestamp}
+                  />
+                ))}
+            {activities.length === 0 && (
+              <p>Non ci sono al momento attività registrate</p>
+            )}
           </div>
+          <h4>Attività "IN PROGRESS"</h4>
+          <hr />
           <div className="projectComponent__activities-inProgress">
-            <ProjectActivityComponent
-              status="inProgress"
-              title="Attività in stato 'IN PROGRESSO'"
-            />
+            {activities !== "" &&
+              activities
+                .filter((activity) => activity.status === "inProgress")
+                .map((activity) => (
+                  <ProjectActivityComponent
+                    status={activity.status}
+                    name={activity.name}
+                    description={activity.description}
+                    timestamp={activity.timestamp}
+                  />
+                ))}
+            {activities.length === 0 && (
+              <p>Non ci sono al momento attività registrate</p>
+            )}
           </div>
+          <h4>Attività "COMPLETATE"</h4>
+          <hr />
           <div className="projectComponent__activities-complete">
-            <ProjectActivityComponent
-              status="complete"
-              title="Attività in stato 'COMPLETATA'"
-            />
+            {activities !== "" &&
+              activities
+                .filter((activity) => activity.status === "complete")
+                .map((activity) => (
+                  <ProjectActivityComponent
+                    status={activity.status}
+                    name={activity.name}
+                    description={activity.description}
+                    timestamp={activity.timestamp}
+                  />
+                ))}
+            {activities.length === 0 && (
+              <p>Non ci sono al momento attività registrate</p>
+            )}
           </div>
         </div>
         <div className="projectComponent__activityFab" onClick={toggle}>
