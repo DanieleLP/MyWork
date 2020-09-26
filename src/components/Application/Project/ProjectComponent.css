@@ -8,8 +8,22 @@
     padding: 2rem;
 }
 
+.projectComponent__heading {
+    width: 100%;
+    text-align: center;
+}
+
 .projectComponent__heading-nb {
     font-weight: normal;
+}
+
+.projectComponent__participants {
+    width: 100%;
+    text-align: center;
+}
+
+.projectComponent__participants-b {
+    font-weight: 700;
 }
 
 .projectComponent__activityFab {
@@ -39,8 +53,10 @@
     padding: 2rem;
 }
 
-.projectComponent__activities h4 {
+.projectComponent__activities h3 {
     margin-top: 1.5rem;
+    width: 100%;
+    text-align: right;
 }
 
 .projectComponent__activities-backlog {
@@ -56,8 +72,4 @@
 .projectComponent__activities-complete {
     display: flex;
     flex-wrap: wrap;
-}
-
-.projectComponent__participants {
-    font-weight: 700;
 }

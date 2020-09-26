@@ -70,7 +70,6 @@ const AddProjectModalComponent = ({ isShowing, hide }) => {
             />
             <p>Seleziona i partecipanti:</p>
             <MultiSelect
-              se
               overrideStrings={overrideStrings}
               options={options}
               value={participants}

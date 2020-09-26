@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./ProjectComponent.css";
 import { useParams } from "react-router-dom";
+import "./ProjectComponent.css";
 import { db } from "../../../firebase";
 import AddIcon from "@material-ui/icons/Add";
 import ProjectActivityComponent from "./ProjectActivityComponent";
@@ -27,28 +27,27 @@ const ProjectComponent = () => {
       .onSnapshot((act) => {
         setActivities(
           act.docs.map((activity) => ({
+            id: activity.id,
             ...activity.data(),
           }))
         );
       });
   }, [projectId]);
 
-  console.log(project.participants);
-  console.log(activities);
   return (
     <div className="projectComponent">
       <div className="projectComponent__container">
-        <h2>
+        <h2 className="projectComponent__heading">
           <span className="projectComponent__heading-nb">Progetto </span>
           {project.name}
         </h2>
-        <p>
+        <p className="projectComponent__participants">
           Partecipanti:
           {project.participants &&
             project.participants.map((participant, i, arr) => (
               <span
                 key={participant.uid}
-                className="projectComponent__participants"
+                className="projectComponent__participants-b"
               >
                 {" "}
                 {participant.name}
@@ -57,55 +56,40 @@ const ProjectComponent = () => {
             ))}
         </p>
         <div className="projectComponent__activities">
-          <h4>Attività in "BACKLOG"</h4>
+          <h3>Attività in "BACKLOG"</h3>
           <hr />
           <div className="projectComponent__activities-backlog">
             {activities !== "" &&
               activities
                 .filter((activity) => activity.status === "backlog")
                 .map((activity) => (
-                  <ProjectActivityComponent
-                    status={activity.status}
-                    name={activity.name}
-                    description={activity.description}
-                    timestamp={activity.timestamp}
-                  />
+                  <ProjectActivityComponent activity={activity} />
                 ))}
             {activities.length === 0 && (
               <p>Non ci sono al momento attività registrate</p>
             )}
           </div>
-          <h4>Attività "IN PROGRESS"</h4>
+          <h3>Attività "IN PROGRESS"</h3>
           <hr />
           <div className="projectComponent__activities-inProgress">
             {activities !== "" &&
               activities
                 .filter((activity) => activity.status === "inProgress")
                 .map((activity) => (
-                  <ProjectActivityComponent
-                    status={activity.status}
-                    name={activity.name}
-                    description={activity.description}
-                    timestamp={activity.timestamp}
-                  />
+                  <ProjectActivityComponent activity={activity} />
                 ))}
             {activities.length === 0 && (
               <p>Non ci sono al momento attività registrate</p>
             )}
           </div>
-          <h4>Attività "COMPLETATE"</h4>
+          <h3>Attività "COMPLETATE"</h3>
           <hr />
           <div className="projectComponent__activities-complete">
             {activities !== "" &&
               activities
                 .filter((activity) => activity.status === "complete")
                 .map((activity) => (
-                  <ProjectActivityComponent
-                    status={activity.status}
-                    name={activity.name}
-                    description={activity.description}
-                    timestamp={activity.timestamp}
-                  />
+                  <ProjectActivityComponent activity={activity} />
                 ))}
             {activities.length === 0 && (
               <p>Non ci sono al momento attività registrate</p>

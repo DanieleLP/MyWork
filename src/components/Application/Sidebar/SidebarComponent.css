@@ -15,6 +15,10 @@
     align-items: center;
 }
 
+.sidebarComponent__header a {
+    text-decoration: none;
+}
+
 .sidebarComponent__header h2 {
     color: white;
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import "./SidebarComponent.css";
 import firebaseApp, { db } from "../../../firebase";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
@@ -38,7 +38,9 @@ const SidebarComponent = (props) => {
     <div className="sidebarComponent">
       <div className="sidebarComponent__container">
         <div className="sidebarComponent__header">
-          <h2>MyWork</h2>
+          <Link to="/">
+            <h2>MyWork</h2>
+          </Link>
           <p>{props.user.email}</p>
           <div className="sidebarComponent__header-addons">
             <NotificationsIcon

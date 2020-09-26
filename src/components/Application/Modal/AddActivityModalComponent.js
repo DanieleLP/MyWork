@@ -18,12 +18,14 @@ const AddActivityModalComponent = ({ projectId, isShowing, hide }) => {
     db.collection("projects")
       .doc(projectId)
       .onSnapshot((snapshot) => {
-        setOptions(
-          snapshot.data().participants.map((participant) => ({
-            label: participant.name,
-            value: participant.uid,
-          }))
-        );
+        if (snapshot.data()) {
+          setOptions(
+            snapshot.data().participants.map((participant) => ({
+              label: participant.name,
+              value: participant.uid,
+            }))
+          );
+        }
       });
   }, [projectId]);
 
@@ -91,7 +93,6 @@ const AddActivityModalComponent = ({ projectId, isShowing, hide }) => {
             />
             <p>Seleziona i partecipanti all'attività:</p>
             <MultiSelect
-              se
               overrideStrings={overrideStrings}
               options={options}
               value={participants}
