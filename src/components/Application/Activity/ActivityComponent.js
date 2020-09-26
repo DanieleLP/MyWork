@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import MultiSelect from "react-multi-select-component";
-import { db } from "../../../firebase";
+import { db, Timestamp } from "../../../firebase";
 import { useParams } from "react-router-dom";
+import { AuthContext } from "../../../providers/Auth";
+
+import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import "./ActivityComponent.css";
 
 const ActivityComponent = () => {
@@ -13,6 +17,8 @@ const ActivityComponent = () => {
   const [hours, setHours] = useState("");
   const [totHours, setTotHours] = useState(2);
   const [desc, setDesc] = useState("");
+  const history = useHistory();
+  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     db.collection("projects")
@@ -44,6 +50,26 @@ const ActivityComponent = () => {
       });
   }, [projectId]);
 
+  const update = (e) => {
+    console.log("faccio update");
+  };
+
+  const addUpdate = (e) => {
+    if (desc !== "" && hours !== "") {
+      db.collection("projects")
+        .doc(projectId)
+        .collection("activities")
+        .doc(activityId)
+        .collection("updates")
+        .add({
+          user: currentUser.uid,
+          description: desc,
+          hours: hours,
+          timestamp: Timestamp,
+        });
+    }
+  };
+
   const overrideStrings = {
     selectSomeItems: "Seleziona partecipanti...",
     allItemsAreSelected: "Hai selezionato tutti i partecipanti.",
@@ -55,6 +81,12 @@ const ActivityComponent = () => {
   return (
     <div className="activityComponent">
       <div className="activityComponent__container">
+        <div
+          className="activityComponent__backBtn"
+          onClick={(e) => history.goBack()}
+        >
+          <KeyboardBackspaceIcon />
+        </div>
         <h2 className="activityComponent__heading">
           <span className="activityComponent__heading-nb">Attività </span>
           <span className="activityComponent__heading-up">
@@ -108,7 +140,12 @@ const ActivityComponent = () => {
               </select>
             </div>
             <div className="activityComponent__info-el">
-              <div className="activityComponent__info-updBtn">Aggiorna</div>
+              <div
+                className="activityComponent__info-updBtn"
+                onClick={(e) => update(e)}
+              >
+                Aggiorna
+              </div>
             </div>
           </div>
           <div className="activityComponent__update">
@@ -119,6 +156,7 @@ const ActivityComponent = () => {
                 name="hours"
                 value={hours}
                 min="0"
+                step=".10"
                 onChange={(e) => {
                   setHours(e.currentTarget.value);
                 }}
@@ -136,7 +174,12 @@ const ActivityComponent = () => {
               />
             </div>
             <div className="activityComponent__update-el">
-              <div className="activityComponent__update-updBtn">Aggiungi</div>
+              <div
+                className="activityComponent__update-updBtn"
+                onClick={(e) => addUpdate(e)}
+              >
+                Aggiungi
+              </div>
             </div>
           </div>
         </div>

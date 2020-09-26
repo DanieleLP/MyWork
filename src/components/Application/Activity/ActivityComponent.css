@@ -8,6 +8,21 @@
     padding: 2rem;
 }
 
+.activityComponent__backBtn {
+    background-color: var(--main-color);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.activityComponent__backBtn .MuiSvgIcon-root {
+    fill: white;
+}
+
 .activityComponent__heading {
     width: 100%;
     text-align: center;
@@ -45,8 +60,8 @@
 
 .activityComponent__info {
     display: flex;
-    align-items: center;
     justify-content: flex-end;
+    align-items: center;
     flex-direction: column;
     width: 50%;
 }
