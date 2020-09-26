@@ -63,7 +63,10 @@ const ProjectComponent = () => {
               activities
                 .filter((activity) => activity.status === "backlog")
                 .map((activity) => (
-                  <ProjectActivityComponent activity={activity} />
+                  <ProjectActivityComponent
+                    key={activity.id}
+                    activity={activity}
+                  />
                 ))}
             {activities.length === 0 && (
               <p>Non ci sono al momento attività registrate</p>
@@ -76,7 +79,10 @@ const ProjectComponent = () => {
               activities
                 .filter((activity) => activity.status === "inProgress")
                 .map((activity) => (
-                  <ProjectActivityComponent activity={activity} />
+                  <ProjectActivityComponent
+                    key={activity.id}
+                    activity={activity}
+                  />
                 ))}
             {activities.length === 0 && (
               <p>Non ci sono al momento attività registrate</p>
@@ -89,7 +95,10 @@ const ProjectComponent = () => {
               activities
                 .filter((activity) => activity.status === "complete")
                 .map((activity) => (
-                  <ProjectActivityComponent activity={activity} />
+                  <ProjectActivityComponent
+                    key={activity.id}
+                    activity={activity}
+                  />
                 ))}
             {activities.length === 0 && (
               <p>Non ci sono al momento attività registrate</p>

@@ -4,6 +4,8 @@ import MultiSelect from "react-multi-select-component";
 import { db, Timestamp } from "../../../firebase";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../../providers/Auth";
+import ActivityUpdateComponent from "./ActivityUpdateComponent";
+import ActivityChatComponent from "./ActivityChatComponent";
 
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import "./ActivityComponent.css";
@@ -15,8 +17,9 @@ const ActivityComponent = () => {
   const [participants, setParticipants] = useState([]);
   const [status, setStatus] = useState("");
   const [hours, setHours] = useState("");
-  const [totHours, setTotHours] = useState(2);
+  const [totHours, setTotHours] = useState(0);
   const [desc, setDesc] = useState("");
+  const [updates, setUpdates] = useState("");
   const history = useHistory();
   const { currentUser } = useContext(AuthContext);
 
@@ -50,11 +53,36 @@ const ActivityComponent = () => {
       });
   }, [projectId]);
 
+  useEffect(() => {
+    db.collection("projects")
+      .doc(projectId)
+      .collection("activities")
+      .doc(activityId)
+      .collection("updates")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((upd) => {
+        setUpdates(upd.docs.map((up) => up.data()));
+        setTotHours(upd.docs.reduce((a, b) => a + (b.data().hours || 0), 0));
+      });
+  }, [projectId, activityId]);
+
   const update = (e) => {
-    console.log("faccio update");
+    if (participants && status) {
+      const updParticipants = participants.map((participant) => ({
+        name: participant.label,
+        uid: participant.value,
+      }));
+
+      db.collection("projects")
+        .doc(projectId)
+        .collection("activities")
+        .doc(activityId)
+        .update({ participants: updParticipants, status: status });
+    }
   };
 
   const addUpdate = (e) => {
+    e.preventDefault();
     if (desc !== "" && hours !== "") {
       db.collection("projects")
         .doc(projectId)
@@ -64,9 +92,11 @@ const ActivityComponent = () => {
         .add({
           user: currentUser.uid,
           description: desc,
-          hours: hours,
+          hours: parseFloat(hours),
           timestamp: Timestamp,
         });
+      setHours("");
+      setDesc("");
     }
   };
 
@@ -184,6 +214,26 @@ const ActivityComponent = () => {
           </div>
         </div>
         <hr />
+        <div className="activityComponent__interaction">
+          <div className="activityComponent__chat">
+            <p>Messaggi:</p>
+            <div className="activityComponent__chat-container">
+              <ActivityChatComponent />
+            </div>
+          </div>
+          <div className="activityComponent__updates">
+            <p>Ultimi aggiornamenti:</p>
+            <div className="activityComponent__updates-list">
+              {updates !== "" &&
+                updates.map((update) => (
+                  <ActivityUpdateComponent
+                    key={update.timestamp}
+                    update={update}
+                  />
+                ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
