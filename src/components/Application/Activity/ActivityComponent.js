@@ -29,29 +29,42 @@ const ActivityComponent = () => {
       .collection("activities")
       .doc(activityId)
       .onSnapshot((act) => {
-        setActivity(act.data());
-        setParticipants(
-          act.data().participants.map((participant) => ({
-            label: participant.name,
-            value: participant.uid,
-          }))
-        );
-        setStatus(act.data().status);
+        if (
+          act.data() &&
+          act
+            .data()
+            .participants.some(
+              (participant) => participant.uid === currentUser.uid
+            )
+        ) {
+          setActivity(act.data());
+          setParticipants(
+            act.data().participants.map((participant) => ({
+              label: participant.name,
+              value: participant.uid,
+            }))
+          );
+          setStatus(act.data().status);
+        } else {
+          history.push("/error");
+        }
       });
-  }, [projectId, activityId]);
+  }, [projectId, activityId, currentUser, history]);
 
   useEffect(() => {
     db.collection("projects")
       .doc(projectId)
       .onSnapshot((proj) => {
-        setOptions(
-          proj.data().participants.map((participant) => ({
-            label: participant.name,
-            value: participant.uid,
-          }))
-        );
+        proj.data()
+          ? setOptions(
+              proj.data().participants.map((participant) => ({
+                label: participant.name,
+                value: participant.uid,
+              }))
+            )
+          : history.push("/error");
       });
-  }, [projectId]);
+  }, [projectId, history]);
 
   useEffect(() => {
     db.collection("projects")

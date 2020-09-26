@@ -1,0 +1,21 @@
+.notificationsComponent {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.notificationsComponent__notification {
+    font-weight: 300;
+    padding: .3rem;
+}
+
+.notificationsComponent p {
+    text-align: center;
+}
+
+.notificationsComponent a {
+    color: var(--main-color);
+}

@@ -17,7 +17,7 @@ const SidebarComponent = (props) => {
   const history = useHistory();
 
   useEffect(() => {
-    const uid = props.user.uid;
+    const uid = props.user.currentUser.uid;
     db.collection("projects").onSnapshot((snapshot) => {
       setProjects(
         snapshot.docs
@@ -41,13 +41,23 @@ const SidebarComponent = (props) => {
           <Link to="/">
             <h2>MyWork</h2>
           </Link>
-          <p>{props.user.email}</p>
+          <p>
+            {props.user.name}
+            <br />
+            <span className="sidebarComponent__header-email">
+              ({props.user.currentUser.email})
+            </span>
+          </p>
           <div className="sidebarComponent__header-addons">
             <NotificationsIcon
-              onClick={() => history.push(`/notifications/${props.user.uid}`)}
+              onClick={() =>
+                history.push(`/notifications/${props.user.currentUser.uid}`)
+              }
             />
             <SettingsIcon
-              onClick={() => history.push(`/settings/${props.user.uid}`)}
+              onClick={() =>
+                history.push(`/settings/${props.user.currentUser.uid}`)
+              }
             />
             <ExitToAppIcon onClick={() => firebaseApp.auth().signOut()} />
           </div>

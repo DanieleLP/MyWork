@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MultiSelect from "react-multi-select-component";
-import { db } from "../../../firebase";
+import { db, Timestamp } from "../../../firebase";
 import { Close } from "@material-ui/icons";
 import "./AddProjectModalComponent.css";
 const AddProjectModalComponent = ({ isShowing, hide }) => {
@@ -30,14 +30,37 @@ const AddProjectModalComponent = ({ isShowing, hide }) => {
   const createProject = (e) => {
     e.preventDefault();
     if (name) {
-      db.collection("projects").add({
-        name,
-        participants: participants.map((participant) => ({
-          name: participant.label,
-          uid: participant.value,
-        })),
-      });
+      db.collection("projects")
+        .add({
+          name,
+          participants: participants.map((participant) => ({
+            name: participant.label,
+            uid: participant.value,
+          })),
+        })
+        .then((docRef) => {
+          participants.map((participant) => {
+            db.collection("users")
+              .where("uid", "==", participant.value)
+              .onSnapshot((snap) =>
+                snap.docs.map((user) =>
+                  db
+                    .collection("users")
+                    .doc(user.id)
+                    .collection("notifications")
+                    .add({
+                      type: 0,
+                      message: `Sei stato(a) aggiunto(a) al progetto ${name}.`,
+                      ref: docRef.id,
+                      timestamp: Timestamp,
+                      status: 0,
+                    })
+                )
+              );
+          });
+        });
     }
+
     hide();
     setName("");
     setParticipants("");

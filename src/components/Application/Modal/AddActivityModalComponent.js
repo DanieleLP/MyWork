@@ -53,6 +53,28 @@ const AddActivityModalComponent = ({ projectId, isShowing, hide }) => {
           })),
           status,
           timestamp: Timestamp,
+        })
+        .then((docRef) => {
+          participants.map((participant) => {
+            db.collection("users")
+              .where("uid", "==", participant.value)
+              .onSnapshot((snap) =>
+                snap.docs.map((user) =>
+                  db
+                    .collection("users")
+                    .doc(user.id)
+                    .collection("notifications")
+                    .add({
+                      type: 1,
+                      message: `Sei stato(a) aggiunto(a) all'attività ${name}.`,
+                      projectRef: projectId,
+                      ref: docRef.id,
+                      timestamp: Timestamp,
+                      status: 0,
+                    })
+                )
+              );
+          });
         });
     }
     hide();

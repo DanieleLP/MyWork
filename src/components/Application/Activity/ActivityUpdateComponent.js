@@ -16,7 +16,7 @@ const ActivityUpdateComponent = (props) => {
           setName(`${snap.data().name} ${snap.data().lastName}`)
         )
       );
-  }, []);
+  }, [user]);
 
   return (
     <div className="activityUpdateComponent">
