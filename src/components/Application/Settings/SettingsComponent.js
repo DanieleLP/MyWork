@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { db } from "../../../firebase";
+import { themeChanger } from "../../../libs/themeChanger";
 import "./SettingsComponent.css";
 const SettingsComponent = () => {
   const { userUid } = useParams();
   const [user, setUser] = useState({});
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
-  const history = useHistory();
 
   useEffect(() => {
     let isRendered = false;
@@ -26,7 +26,6 @@ const SettingsComponent = () => {
   }, [userUid]);
 
   const update = (e) => {
-    console.log("wat");
     if (name && lastName) {
       db.collection("users")
         .where("uid", "==", userUid)
@@ -35,13 +34,17 @@ const SettingsComponent = () => {
             db.collection("users")
               .doc(user.id)
               .update({ name, lastName })
-              .then((ref) => history.push("/"));
+              .then((ref) => window.location.reload());
           })
         );
     }
 
     setName("");
     setLastName("");
+  };
+
+  const changeTheme = (e) => {
+    themeChanger(e.currentTarget.className);
   };
 
   return (
@@ -73,6 +76,29 @@ const SettingsComponent = () => {
             <p>Aggiorna</p>
           </div>
           <hr />
+          <p>Seleziona il tema:</p>
+          <div className="settingsComponent__themeList">
+            <div
+              className="settingsComponent__theme default"
+              onClick={(e) => changeTheme(e)}
+            ></div>
+            <div
+              className="settingsComponent__theme yellow"
+              onClick={(e) => changeTheme(e)}
+            ></div>
+            <div
+              className="settingsComponent__theme lightblue"
+              onClick={(e) => changeTheme(e)}
+            ></div>
+            <div
+              className="settingsComponent__theme purple"
+              onClick={(e) => changeTheme(e)}
+            ></div>
+            <div
+              className="settingsComponent__theme petrol"
+              onClick={(e) => changeTheme(e)}
+            ></div>
+          </div>
         </div>
       </div>
     )

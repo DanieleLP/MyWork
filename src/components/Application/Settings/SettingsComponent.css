@@ -51,3 +51,15 @@
     background-color: var(--main-color-accent-secondary);
     transition: all .2s;
 }
+
+.settingsComponent__themeList {
+    display: flex;
+}
+
+.settingsComponent__theme {
+    cursor: pointer;
+    margin: .5rem;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--main-color);
+}

@@ -14,12 +14,15 @@ const HomeComponent = () => {
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
+    let isRendered = false;
     db.collection("users")
       .where("uid", "==", currentUser.uid)
       .onSnapshot((snap) =>
-        snap.docs.map((user) =>
-          setName(`${user.data().name} ${user.data().lastName}`)
-        )
+        snap.docs.forEach((user) => {
+          if (!isRendered) {
+            setName(`${user.data().name} ${user.data().lastName}`);
+          }
+        })
       );
 
     db.collection("users")
@@ -30,13 +33,18 @@ const HomeComponent = () => {
             .collection("users")
             .doc(user.id)
             .collection("notifications")
-            .onSnapshot((snapshot) =>
-              setNotifications(
-                snapshot.docs.filter((snap) => snap.data().status === 0)
-              )
-            )
+            .onSnapshot((snapshot) => {
+              if (!isRendered) {
+                setNotifications(
+                  snapshot.docs.filter((snap) => snap.data().status === 0)
+                );
+              }
+            })
         )
       );
+    return () => {
+      isRendered = true;
+    };
   }, [currentUser]);
   return (
     <div className="homeComponent">
