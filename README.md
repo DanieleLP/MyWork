@@ -23,12 +23,17 @@ e rendono la piattaforma più “personalizzabile”.
 
 ## Tecnologie utilizzate
 
-ReactJS, HTML5, CSS3, JavaScript
-Firebase e Firestore
+ReactJS, HTML5, CSS3, JavaScript.
+MaterialUI Icons, Avatar, Tooltip.
+Firebase e Firestore.
+
+## Per visualizzare l'applicazione live
+
+Visita [https://mywork-final.web.app](https://mywork-final.web.app)
 
 ## Per testare l'applicazione in locale
 
-In the project directory, you can run:
+Dalla directory principale del progetto:
 
 ### `npm start`
 
