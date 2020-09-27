@@ -11,6 +11,7 @@ import LoginComponent from "./components/Auth/LoginComponent";
 import RegisterComponent from "./components/Auth/RegisterComponent";
 import ErrorComponent from "./components/Application/Error/ErrorComponent";
 import NotificationsComponent from "./components/Application/Notifications/NotificationsComponent";
+import SettingsComponent from "./components/Application/Settings/SettingsComponent";
 
 const App = () => {
   const { currentUser } = useContext(AuthContext);
@@ -40,6 +41,9 @@ const App = () => {
         </Route>
         <Route exact path="/notifications/:userUid">
           <NotificationsComponent />
+        </Route>
+        <Route exact path="/settings/:userUid">
+          <SettingsComponent />
         </Route>
         <Route exact path="/error">
           <ErrorComponent />

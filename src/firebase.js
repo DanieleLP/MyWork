@@ -2,23 +2,20 @@ import firebase from "firebase";
 import "firebase/auth";
 
 const firebaseApp = firebase.initializeApp({
-    apiKey: "AIzaSyAxnRT7PCOzxVGMCrCeRn-yAjiNc12UO0U",
-    authDomain: "mywork-92c2b.firebaseapp.com",
-    databaseURL: "https://mywork-92c2b.firebaseio.com",
-    projectId: "mywork-92c2b",
-    storageBucket: "mywork-92c2b.appspot.com",
-    messagingSenderId: "409311604436",
-    appId: "1:409311604436:web:8e9564fdd64c4546305541",
-    measurementId: "G-GS7L4PYYSE"
+    apiKey: "AIzaSyD4BUWOEKTSJsJy9gkI274DEpFoxEvwXGE",
+    authDomain: "mywork-final.firebaseapp.com",
+    databaseURL: "https://mywork-final.firebaseio.com",
+    projectId: "mywork-final",
+    storageBucket: "mywork-final.appspot.com",
+    messagingSenderId: "589847703373",
+    appId: "1:589847703373:web:a1a1219b7ac1d97f101104"
 });
 
 const db = firebaseApp.firestore();
-const FieldPath = firebase.firestore.FieldPath;
 const Timestamp = firebase.firestore.FieldValue.serverTimestamp();
 
 export {
     db,
-    FieldPath,
     Timestamp,
 };
 

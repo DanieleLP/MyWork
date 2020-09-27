@@ -32,6 +32,47 @@ const ActivityChatComponent = () => {
         user: currentUser.uid,
         message,
         timestamp: Timestamp,
+      })
+      .then((messageRef) => {
+        db.collection("users")
+          .where("uid", "==", currentUser.uid)
+          .onSnapshot((users) =>
+            users.docs.forEach((user) => {
+              db.collection("projects")
+                .doc(projectId)
+                .collection("activities")
+                .doc(activityId)
+                .onSnapshot((snapshot) => {
+                  snapshot.data().participants.forEach((participant) => {
+                    db.collection("users")
+                      .where("uid", "==", participant.uid)
+                      .onSnapshot((pUsers) =>
+                        pUsers.docs.forEach((p) => {
+                          let dbRef = db
+                            .collection("users")
+                            .doc(p.id)
+                            .collection("notifications")
+                            .doc();
+                          if (p.data().uid !== currentUser.uid) {
+                            dbRef.set({
+                              type: 2,
+                              message: `${user.data().name} ${
+                                user.data().lastName
+                              } ha scritto "${message}".`,
+                              notificationRef: dbRef.id,
+                              projectRef: projectId,
+                              activityRef: activityId,
+                              messageRef: messageRef.id,
+                              timestamp: Timestamp,
+                              status: 0,
+                            });
+                          }
+                        })
+                      );
+                  });
+                });
+            })
+          );
       });
     setMessage("");
   };

@@ -19,15 +19,52 @@ const NotificationsComponent = () => {
             .orderBy("timestamp", "desc")
             .onSnapshot((snapshot) =>
               setNotifications(
-                snapshot.docs.map((notification) => notification.data())
+                snapshot.docs
+                  .filter((snap) => snap.data().status === 0)
+                  .map((notification) => notification.data())
               )
             )
         )
       );
   }, [userUid]);
 
+  const mark = (e, notification) => {
+    db.collection("users")
+      .where("uid", "==", userUid)
+      .onSnapshot((snap) =>
+        snap.docs.map((user) =>
+          db
+            .collection("users")
+            .doc(user.id)
+            .collection("notifications")
+            .doc(notification.notificationRef)
+            .update({ status: 1 })
+        )
+      );
+  };
+
+  const markAll = (e) => {
+    db.collection("users")
+      .where("uid", "==", userUid)
+      .onSnapshot((snap) =>
+        snap.docs.map((user) =>
+          db
+            .collection("users")
+            .doc(user.id)
+            .collection("notifications")
+            .onSnapshot((notifications) =>
+              notifications.forEach((notification) =>
+                notification.ref.update({ status: 1 })
+              )
+            )
+        )
+      );
+  };
+
+  console.log(notifications);
   return (
-    notifications && (
+    notifications &&
+    notifications !== undefined && (
       <div className="notificationsComponent">
         {notifications && notifications.length > 0 ? (
           <p>Le tue notifiche:</p>
@@ -37,28 +74,77 @@ const NotificationsComponent = () => {
             <Link to="/">Torna alla home page</Link>
           </p>
         )}
-        <ul>
-          {notifications.map((notification) => (
-            <li className="notificationsComponent__notification">
-              {notification.type === 0 && (
-                <>
-                  {notification.message}{" "}
-                  <Link to={`/projects/${notification.ref}`}>(visualizza)</Link>
-                </>
-              )}
-              {notification.type === 1 && (
-                <>
-                  {notification.message}{" "}
-                  <Link
-                    to={`/projects/${notification.projectRef}/activity/${notification.ref}`}
-                  >
-                    (visualizza)
-                  </Link>
-                </>
-              )}
-            </li>
-          ))}
-        </ul>
+        {notifications.length > 0 && (
+          <ul>
+            {notifications.map((notification) => (
+              <li className="notificationsComponent__notification">
+                {notification && notification.type === 0 && (
+                  <>
+                    {notification.message}{" "}
+                    <Link
+                      onClick={(e, not) => mark(e, notification)}
+                      to={`/projects/${notification.ref}`}
+                    >
+                      (visualizza)
+                    </Link>
+                  </>
+                )}
+                {notification && notification.type === 1 && (
+                  <>
+                    {notification.message}{" "}
+                    <Link
+                      onClick={(e, not) => mark(e, notification)}
+                      to={`/projects/${notification.projectRef}/activity/${notification.ref}`}
+                    >
+                      (visualizza)
+                    </Link>
+                  </>
+                )}
+                {notification && notification.type === 2 && (
+                  <>
+                    {notification.message}{" "}
+                    <Link
+                      onClick={(e, not) => mark(e, notification)}
+                      to={`/projects/${notification.projectRef}/activity/${notification.activityRef}`}
+                    >
+                      (visualizza)
+                    </Link>
+                  </>
+                )}
+                {notification && notification.type === 3 && (
+                  <>
+                    {notification.message}{" "}
+                    <Link
+                      onClick={(e, not) => mark(e, notification)}
+                      to={`/projects/${notification.projectRef}/activity/${notification.activityRef}`}
+                    >
+                      (visualizza)
+                    </Link>
+                  </>
+                )}
+                {notification && notification.type === 4 && (
+                  <>
+                    {notification.message}{" "}
+                    <Link
+                      onClick={(e, not) => mark(e, notification)}
+                      to={`/projects/${notification.projectRef}/activity/${notification.activityRef}`}
+                    >
+                      (visualizza)
+                    </Link>
+                  </>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+        {notifications && notifications.length > 0 && (
+          <div
+            className="notificationsComponent__markAllBtn"
+            onClick={(e) => markAll(e)}
+          >
+            <p>Segna tutto come letto</p>
+          </div>
+        )}
       </div>
     )
   );

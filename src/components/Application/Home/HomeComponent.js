@@ -32,7 +32,7 @@ const HomeComponent = () => {
             .collection("notifications")
             .onSnapshot((snapshot) =>
               setNotifications(
-                snapshot.docs.map((notification) => notification.data())
+                snapshot.docs.filter((snap) => snap.data().status === 0)
               )
             )
         )
@@ -41,7 +41,7 @@ const HomeComponent = () => {
   return (
     <div className="homeComponent">
       <h2>
-        <span className="homeComponent-nb">Benvenuto</span> {name}!
+        <span className="homeComponent-nb">Benvenuto</span> {name}
       </h2>
       <p>
         Hai attualmente{" "}
@@ -71,8 +71,8 @@ const HomeComponent = () => {
           Aggiungi un nuovo progetto dal bottone con l'icona <AddIcon />;
         </li>
         <li>
-          Per ogni progetto aggiungi una nuova attività con il "fab" in basso a
-          destra con l'icona <AddIcon />.
+          Accedi ad un progetto e aggiungi una nuova attività con il "FAB" con
+          l'icona <AddIcon /> in basso a destra.
         </li>
       </ul>
     </div>

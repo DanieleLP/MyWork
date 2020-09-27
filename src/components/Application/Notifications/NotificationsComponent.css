@@ -19,3 +19,26 @@
 .notificationsComponent a {
     color: var(--main-color);
 }
+
+.notificationsComponent ul {
+    max-height: 10rem;
+    overflow-y: scroll;
+    padding: 1rem;
+}
+
+.notificationsComponent__markAllBtn {
+    width: auto;
+    color: white;
+    margin: 1rem;
+    padding: .5rem;
+    background-color: var(--main-color-accent);
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.notificationsComponent__markAllBtn:hover {
+    background-color: var(--main-color-accent-secondary);
+    transition: all .2s;
+}

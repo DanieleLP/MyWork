@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import MultiSelect from "react-multi-select-component";
+import { AuthContext } from "../../../providers/Auth";
 import { db, Timestamp } from "../../../firebase";
 import { Close } from "@material-ui/icons";
 import "./AddProjectModalComponent.css";
 const AddProjectModalComponent = ({ isShowing, hide }) => {
+  const { currentUser } = useContext(AuthContext);
   const [name, setName] = useState("");
   const [participants, setParticipants] = useState([]);
   const [options, setOptions] = useState([]);
@@ -39,23 +41,27 @@ const AddProjectModalComponent = ({ isShowing, hide }) => {
           })),
         })
         .then((docRef) => {
-          participants.map((participant) => {
+          participants.forEach((participant) => {
             db.collection("users")
               .where("uid", "==", participant.value)
               .onSnapshot((snap) =>
-                snap.docs.map((user) =>
-                  db
+                snap.docs.forEach((user) => {
+                  let dbRef = db
                     .collection("users")
                     .doc(user.id)
                     .collection("notifications")
-                    .add({
+                    .doc();
+                  if (user.data().uid !== currentUser.uid) {
+                    dbRef.set({
                       type: 0,
                       message: `Sei stato(a) aggiunto(a) al progetto ${name}.`,
+                      notificationRef: dbRef.id,
                       ref: docRef.id,
                       timestamp: Timestamp,
                       status: 0,
-                    })
-                )
+                    });
+                  }
+                })
               );
           });
         });
@@ -77,11 +83,11 @@ const AddProjectModalComponent = ({ isShowing, hide }) => {
     >
       <div className="addProjectModalComponent__container">
         <div className="addProjectModalComponent__close">
-          <Close onClick={hide} />
-        </div>
+          <Close onClick={hide} />{" "}
+        </div>{" "}
         <div className="addProjectModalComponent__header">
-          <h3>Aggiungi un progetto</h3>
-        </div>
+          <h3> Aggiungi un progetto </h3>{" "}
+        </div>{" "}
         <div className="addProjectModalComponent__content">
           <form>
             <input
@@ -90,24 +96,24 @@ const AddProjectModalComponent = ({ isShowing, hide }) => {
               value={name}
               placeholder="Inserisci il nome del progetto"
               onChange={(e) => setName(e.currentTarget.value)}
-            />
-            <p>Seleziona i partecipanti:</p>
+            />{" "}
+            <p> Seleziona i partecipanti: </p>{" "}
             <MultiSelect
               overrideStrings={overrideStrings}
               options={options}
               value={participants}
               onChange={setParticipants}
               labelledBy={"Seleziona i partecipanti"}
-            />
+            />{" "}
             <div
               className="addProjectModalComponent__btn"
               onClick={(e) => createProject(e)}
             >
-              Aggiungi
-            </div>
-          </form>
-        </div>
-      </div>
+              Aggiungi{" "}
+            </div>{" "}
+          </form>{" "}
+        </div>{" "}
+      </div>{" "}
     </div>
   ) : null;
 };

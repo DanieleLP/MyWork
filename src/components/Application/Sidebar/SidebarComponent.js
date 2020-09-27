@@ -15,6 +15,27 @@ const SidebarComponent = (props) => {
   const [projects, setProjects] = useState([]);
   const { show, toggle } = useModal();
   const history = useHistory();
+  const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    const uid = props.user.currentUser.uid;
+    db.collection("users")
+      .where("uid", "==", uid)
+      .onSnapshot((snap) =>
+        snap.docs.map((user) =>
+          db
+            .collection("users")
+            .doc(user.id)
+            .collection("notifications")
+            .orderBy("timestamp", "desc")
+            .onSnapshot((snapshot) =>
+              setNotifications(
+                snapshot.docs.filter((snap) => snap.data().status === 0)
+              )
+            )
+        )
+      );
+  }, [props]);
 
   useEffect(() => {
     const uid = props.user.currentUser.uid;
@@ -49,11 +70,18 @@ const SidebarComponent = (props) => {
             </span>
           </p>
           <div className="sidebarComponent__header-addons">
-            <NotificationsIcon
-              onClick={() =>
-                history.push(`/notifications/${props.user.currentUser.uid}`)
-              }
-            />
+            <div className="sidebarComponent__notification">
+              <NotificationsIcon
+                onClick={() =>
+                  history.push(`/notifications/${props.user.currentUser.uid}`)
+                }
+              />
+              {notifications && notifications.length > 0 ? (
+                <span className="sidebarComponent__notification-badge animated">
+                  {notifications.length}
+                </span>
+              ) : null}
+            </div>
             <SettingsIcon
               onClick={() =>
                 history.push(`/settings/${props.user.currentUser.uid}`)

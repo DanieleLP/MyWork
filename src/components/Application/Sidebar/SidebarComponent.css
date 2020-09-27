@@ -36,6 +36,10 @@
     font-weight: 300;
 }
 
+.sidebarComponent__header-addons {
+    display: flex;
+}
+
 .sidebarComponent__header-addons .MuiSvgIcon-root {
     margin: 0 .3rem;
     font-size: 22px;
@@ -48,6 +52,42 @@
     fill: var(--main-color-accent);
     transition: all .2s;
 }
+
+.sidebarComponent__notification {
+    position: relative;
+}
+
+.sidebarComponent__notification-badge {
+    background-color: red;
+    border-radius: .3rem;
+    color: white;
+    padding: 1px 3px;
+    font-size: 10px;
+    position: absolute;
+    top: 0;
+    right: 3px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgb(255, 0, 0, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgb(255, 0, 0, 0);
+        ;
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgb(255, 0, 0, 0);
+        ;
+    }
+}
+
 
 .sidebarComponent__projects {
     display: flex;

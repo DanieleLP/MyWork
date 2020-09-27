@@ -90,7 +90,47 @@ const ActivityComponent = () => {
         .doc(projectId)
         .collection("activities")
         .doc(activityId)
-        .update({ participants: updParticipants, status: status });
+        .update({ participants: updParticipants, status: status })
+        .then((updRef) => {
+          db.collection("users")
+            .where("uid", "==", currentUser.uid)
+            .onSnapshot((users) =>
+              users.docs.forEach((user) => {
+                db.collection("projects")
+                  .doc(projectId)
+                  .collection("activities")
+                  .doc(activityId)
+                  .onSnapshot((snapshot) => {
+                    snapshot.data().participants.forEach((participant) => {
+                      db.collection("users")
+                        .where("uid", "==", participant.uid)
+                        .onSnapshot((pUsers) =>
+                          pUsers.docs.forEach((p) => {
+                            let dbRef = db
+                              .collection("users")
+                              .doc(p.id)
+                              .collection("notifications")
+                              .doc();
+                            if (p.data().uid !== currentUser.uid) {
+                              dbRef.set({
+                                type: 4,
+                                message: `${user.data().name} ${
+                                  user.data().lastName
+                                } ha aggiornato lo stato di ${activity.name}.`,
+                                notificationRef: dbRef.id,
+                                projectRef: projectId,
+                                activityRef: activityId,
+                                timestamp: Timestamp,
+                                status: 0,
+                              });
+                            }
+                          })
+                        );
+                    });
+                  });
+              })
+            );
+        });
     }
   };
 
@@ -107,6 +147,46 @@ const ActivityComponent = () => {
           description: desc,
           hours: parseFloat(hours),
           timestamp: Timestamp,
+        })
+        .then((updRef) => {
+          db.collection("users")
+            .where("uid", "==", currentUser.uid)
+            .onSnapshot((users) =>
+              users.docs.forEach((user) => {
+                db.collection("projects")
+                  .doc(projectId)
+                  .collection("activities")
+                  .doc(activityId)
+                  .onSnapshot((snapshot) => {
+                    snapshot.data().participants.forEach((participant) => {
+                      db.collection("users")
+                        .where("uid", "==", participant.uid)
+                        .onSnapshot((pUsers) =>
+                          pUsers.docs.forEach((p) => {
+                            let dbRef = db
+                              .collection("users")
+                              .doc(p.id)
+                              .collection("notifications")
+                              .doc();
+                            if (p.data().uid !== currentUser.uid) {
+                              dbRef.set({
+                                type: 3,
+                                message: `${user.data().name} ${
+                                  user.data().lastName
+                                } ha lavorato a ${activity.name}.`,
+                                notificationRef: dbRef.id,
+                                projectRef: projectId,
+                                activityRef: activityId,
+                                timestamp: Timestamp,
+                                status: 0,
+                              });
+                            }
+                          })
+                        );
+                    });
+                  });
+              })
+            );
         });
       setHours("");
       setDesc("");
