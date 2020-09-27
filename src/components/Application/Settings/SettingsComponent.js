@@ -11,8 +11,6 @@ import "./SettingsComponent.css";
 const SettingsComponent = () => {
   const { userUid } = useParams();
   const [user, setUser] = useState({});
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
 
   // fetch real-time dei dati dell'utente attuale
   useEffect(() => {
@@ -23,8 +21,6 @@ const SettingsComponent = () => {
         snapshot.docs.forEach((user) => {
           if (!isRendered) {
             setUser(user.data());
-            setName(user.data().name);
-            setLastName(user.data().lastName);
           }
         })
       );
@@ -32,25 +28,6 @@ const SettingsComponent = () => {
       isRendered = true;
     };
   }, [userUid]);
-
-  // funzione per aggiornare il nome e cognome dell'utente
-  const update = (e) => {
-    if (name && lastName) {
-      db.collection("users")
-        .where("uid", "==", userUid)
-        .onSnapshot((snapshot) =>
-          snapshot.docs.forEach((user) => {
-            db.collection("users")
-              .doc(user.id)
-              .update({ name, lastName })
-              .then((ref) => window.location.reload());
-          })
-        );
-    }
-
-    setName("");
-    setLastName("");
-  };
 
   // chiamata alla funzione della libreria changeTheme per cambiare il tema dell'applicazione
   const changeTheme = (e) => {
@@ -64,27 +41,6 @@ const SettingsComponent = () => {
           <h2>
             {user.name} {user.lastName}
           </h2>
-          <hr />
-          <p>Cambia nome e cognome associati all'account:</p>
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onKeyDown={(e) => (e.keyCode === 13 ? update(e) : null)}
-            onChange={(e) => setName(e.currentTarget.value)}
-            placeholder="Inserisci il nuovo nome..."
-          />
-          <input
-            type="text"
-            name="lastName"
-            value={lastName}
-            onChange={(e) => setLastName(e.currentTarget.value)}
-            onKeyDown={(e) => (e.keyCode === 13 ? update(e) : null)}
-            placeholder="Inserisci il nuovo cognome..."
-          />
-          <div className="settingsComponent__btn" onClick={(e) => update(e)}>
-            <p>Aggiorna</p>
-          </div>
           <hr />
           <p>Seleziona il tema:</p>
           <div className="settingsComponent__themeList">
