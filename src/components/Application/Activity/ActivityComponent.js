@@ -212,16 +212,19 @@ const ActivityComponent = () => {
           </span>
         </h2>
         <p className="activityComponent__participants">
-          Partecipanti:
+          Partecipanti:{" "}
           {activity.participants &&
             activity.participants.map((participant, i, arr) => (
               <span
                 key={participant.uid}
                 className="activityComponent__participants-b"
               >
-                {" "}
-                {participant.name}
-                {!i && arr.length !== 1 ? "," : ""}
+                {activity.participants.length > 1
+                  ? i !== activity.participants.length - 1
+                    ? (i ? ", " : "") + participant.name
+                    : " e " + participant.name
+                  : null}
+                {activity.participants.length < 2 && participant.name}
               </span>
             ))}
         </p>

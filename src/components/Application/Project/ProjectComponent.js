@@ -53,16 +53,19 @@ const ProjectComponent = () => {
             {project.name}
           </h2>
           <p className="projectComponent__participants">
-            Partecipanti:
+            Partecipanti:{" "}
             {project.participants &&
               project.participants.map((participant, i, arr) => (
                 <span
                   key={participant.uid}
                   className="projectComponent__participants-b"
                 >
-                  {" "}
-                  {participant.name}
-                  {!i && arr.length !== 1 ? "," : ""}
+                  {project.participants.length > 1
+                    ? i !== project.participants.length - 1
+                      ? (i ? ", " : "") + participant.name
+                      : " e " + participant.name
+                    : null}
+                  {project.participants.length < 2 && participant.name}
                 </span>
               ))}
           </p>

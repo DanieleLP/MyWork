@@ -44,6 +44,7 @@
 .activityComponent__participants {
     width: 100%;
     text-align: center;
+    font-size: 15px;
 }
 
 .activityComponent__participants-b {
