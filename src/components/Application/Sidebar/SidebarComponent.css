@@ -35,6 +35,7 @@
 .sidebarComponent__header-email {
     font-size: 10px;
     font-weight: 300;
+    text-transform: lowercase;
 }
 
 .sidebarComponent__header-addons {
@@ -46,12 +47,13 @@
     font-size: 22px;
     fill: white;
     cursor: pointer;
-    transition: all .2s;
+    transition: all .5s;
 }
 
 .sidebarComponent__header-addons .MuiSvgIcon-root:hover {
     fill: var(--main-color-accent);
-    transition: all .2s;
+    transform: rotate(360deg);
+    transition: all .5s;
 }
 
 .sidebarComponent__notification {

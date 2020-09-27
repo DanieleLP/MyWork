@@ -19,10 +19,16 @@
     margin: 1rem;
 }
 
+.homeComponent__info-head {
+    font-size: 15px;
+}
+
 .homeComponent ul li {
     display: flex;
     align-items: center;
     padding: .05rem;
+    font-size: 13px;
+    min-height: 1.5rem;
 }
 
 .homeComponent ul li .MuiSvgIcon-root {

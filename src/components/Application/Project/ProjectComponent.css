@@ -20,10 +20,21 @@
 .projectComponent__participants {
     width: 100%;
     text-align: center;
+    font-size: 15px;
 }
 
 .projectComponent__participants-b {
     font-weight: 700;
+}
+
+.projectComponent__fabContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    bottom: 1rem;
+    position: fixed;
+    width: 85vw;
+    max-width: 100rem;
 }
 
 .projectComponent__activityFab {
@@ -34,9 +45,6 @@
     height: 4rem;
     width: 4rem;
     border-radius: 50%;
-    bottom: 1rem;
-    right: 1rem;
-    position: fixed;
     cursor: pointer;
 }
 
@@ -44,6 +52,12 @@
     fill: white;
     font-size: 36px;
     pointer-events: none;
+    transition: .5s;
+}
+
+.projectComponent__activityFab:hover .MuiSvgIcon-root {
+    transform: rotate(180deg);
+    transition: .5s;
 }
 
 .projectComponent__activities {
@@ -53,10 +67,15 @@
     padding: 2rem;
 }
 
+.projectComponent__nactivities {
+    font-size: 13px;
+}
+
 .projectComponent__activities h3 {
     margin-top: 1.5rem;
     width: 100%;
     text-align: right;
+    font-size: 15px;
 }
 
 .projectComponent__activities-backlog {

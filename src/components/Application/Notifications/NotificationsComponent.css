@@ -26,6 +26,10 @@
     padding: 1rem;
 }
 
+.notificationsComponent ul li {
+    font-size: 14px;
+}
+
 .notificationsComponent__markAllBtn {
     width: auto;
     color: white;

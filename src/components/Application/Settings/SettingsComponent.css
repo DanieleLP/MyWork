@@ -62,4 +62,10 @@
     width: 2rem;
     height: 2rem;
     background-color: var(--main-color);
+    transition: .5s;
+}
+
+.settingsComponent__theme:hover {
+    transform: rotate(90deg);
+    transition: .5s;
 }

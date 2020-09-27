@@ -98,11 +98,11 @@ const AddActivityModalComponent = ({ projectId, isShowing, hide }) => {
     >
       <div className="addActivityModalComponent__container">
         <div className="addActivityModalComponent__close">
-          <Close onClick={hide} />{" "}
-        </div>{" "}
+          <Close onClick={hide} />
+        </div>
         <div className="addActivityModalComponent__header">
-          <h3> Aggiungi un 'attività</h3>{" "}
-        </div>{" "}
+          <h3> Aggiungi un'attività</h3>
+        </div>
         <div className="addActivityModalComponent__content">
           <form>
             <input
@@ -111,31 +111,31 @@ const AddActivityModalComponent = ({ projectId, isShowing, hide }) => {
               value={name}
               placeholder="Inserisci il nome dell'attività"
               onChange={(e) => setName(e.currentTarget.value)}
-            />{" "}
+            />
             <textarea
               name="description"
               value={description}
               placeholder="Inserisci una descrizione per l'attività"
               onChange={(e) => setDescription(e.currentTarget.value)}
-            />{" "}
-            <p> Seleziona i partecipanti all 'attività:</p>{" "}
+            />
+            <p> Seleziona i partecipanti all 'attività:</p>
             <MultiSelect
               overrideStrings={overrideStrings}
               options={options}
               value={participants}
               onChange={setParticipants}
               labelledBy={"Seleziona i partecipanti"}
-            />{" "}
-            <p> Status dell 'attività:</p>{" "}
+            />
+            <p> Status dell 'attività:</p>
             <select
               value={status}
               onChange={(e) => setStatus(e.currentTarget.value)}
             >
-              <option value="backlog"> BACKLOG </option>{" "}
-              <option value="inProgress"> IN PROGRESSO </option>{" "}
-              <option value="complete"> COMPLETATA </option>{" "}
-            </select>{" "}
-            <p> Creatore dell 'attività:</p>{" "}
+              <option value="backlog"> BACKLOG </option>
+              <option value="inProgress"> IN PROGRESSO </option>
+              <option value="complete"> COMPLETATA </option>
+            </select>
+            <p> Creatore dell 'attività:</p>
             <input
               type="text"
               name="owner"
@@ -143,16 +143,16 @@ const AddActivityModalComponent = ({ projectId, isShowing, hide }) => {
               placeholder="Inserisci il nome dell'attività"
               disabled
               onChange={(e) => setOwner(e.currentTarget.value)}
-            />{" "}
+            />
             <div
               className="addActivityModalComponent__btn"
               onClick={(e) => createActivity(e)}
             >
-              Aggiungi{" "}
-            </div>{" "}
-          </form>{" "}
-        </div>{" "}
-      </div>{" "}
+              Aggiungi
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   ) : null;
 };

@@ -85,11 +85,11 @@ const AddProjectModalComponent = ({ isShowing, hide }) => {
     >
       <div className="addProjectModalComponent__container">
         <div className="addProjectModalComponent__close">
-          <Close onClick={hide} />{" "}
-        </div>{" "}
+          <Close onClick={hide} />
+        </div>
         <div className="addProjectModalComponent__header">
-          <h3> Aggiungi un progetto </h3>{" "}
-        </div>{" "}
+          <h3> Aggiungi un progetto </h3>
+        </div>
         <div className="addProjectModalComponent__content">
           <form>
             <input
@@ -98,24 +98,24 @@ const AddProjectModalComponent = ({ isShowing, hide }) => {
               value={name}
               placeholder="Inserisci il nome del progetto"
               onChange={(e) => setName(e.currentTarget.value)}
-            />{" "}
-            <p> Seleziona i partecipanti: </p>{" "}
+            />
+            <p> Seleziona i partecipanti: </p>
             <MultiSelect
               overrideStrings={overrideStrings}
               options={options}
               value={participants}
               onChange={setParticipants}
               labelledBy={"Seleziona i partecipanti"}
-            />{" "}
+            />
             <div
               className="addProjectModalComponent__btn"
               onClick={(e) => createProject(e)}
             >
-              Aggiungi{" "}
-            </div>{" "}
-          </form>{" "}
-        </div>{" "}
-      </div>{" "}
+              Aggiungi
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   ) : null;
 };

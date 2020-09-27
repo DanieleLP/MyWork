@@ -80,7 +80,9 @@ const ProjectComponent = () => {
                     />
                   ))}
               {activities.length === 0 && (
-                <p>Non ci sono al momento attività registrate</p>
+                <p className="projectComponent__nactivities">
+                  Non ci sono al momento attività registrate
+                </p>
               )}
             </div>
             <h3>Attività "IN PROGRESS"</h3>
@@ -96,7 +98,9 @@ const ProjectComponent = () => {
                     />
                   ))}
               {activities.length === 0 && (
-                <p>Non ci sono al momento attività registrate</p>
+                <p className="projectComponent__nactivities">
+                  Non ci sono al momento attività registrate
+                </p>
               )}
             </div>
             <h3>Attività "COMPLETATE"</h3>
@@ -112,10 +116,14 @@ const ProjectComponent = () => {
                     />
                   ))}
               {activities.length === 0 && (
-                <p>Non ci sono al momento attività registrate</p>
+                <p className="projectComponent__nactivities">
+                  Non ci sono al momento attività registrate
+                </p>
               )}
             </div>
           </div>
+        </div>
+        <div className="projectComponent__fabContainer">
           <div className="projectComponent__activityFab" onClick={toggle}>
             <AddIcon />
           </div>

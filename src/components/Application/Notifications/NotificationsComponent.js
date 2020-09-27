@@ -79,7 +79,7 @@ const NotificationsComponent = () => {
               <li className="notificationsComponent__notification">
                 {notification && notification.type === 0 && (
                   <>
-                    {notification.message}{" "}
+                    {notification.message}
                     <Link
                       onClick={(e, not) => mark(e, notification)}
                       to={`/projects/${notification.ref}`}
@@ -90,7 +90,7 @@ const NotificationsComponent = () => {
                 )}
                 {notification && notification.type === 1 && (
                   <>
-                    {notification.message}{" "}
+                    {notification.message}
                     <Link
                       onClick={(e, not) => mark(e, notification)}
                       to={`/projects/${notification.projectRef}/activity/${notification.ref}`}
@@ -101,7 +101,7 @@ const NotificationsComponent = () => {
                 )}
                 {notification && notification.type === 2 && (
                   <>
-                    {notification.message}{" "}
+                    {notification.message}
                     <Link
                       onClick={(e, not) => mark(e, notification)}
                       to={`/projects/${notification.projectRef}/activity/${notification.activityRef}`}
@@ -112,7 +112,7 @@ const NotificationsComponent = () => {
                 )}
                 {notification && notification.type === 3 && (
                   <>
-                    {notification.message}{" "}
+                    {notification.message}
                     <Link
                       onClick={(e, not) => mark(e, notification)}
                       to={`/projects/${notification.projectRef}/activity/${notification.activityRef}`}
@@ -123,7 +123,7 @@ const NotificationsComponent = () => {
                 )}
                 {notification && notification.type === 4 && (
                   <>
-                    {notification.message}{" "}
+                    {notification.message}
                     <Link
                       onClick={(e, not) => mark(e, notification)}
                       to={`/projects/${notification.projectRef}/activity/${notification.activityRef}`}

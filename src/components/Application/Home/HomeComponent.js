@@ -60,7 +60,7 @@ const HomeComponent = () => {
         !
       </p>
       <hr />
-      <p>
+      <p className="homeComponent__info-head">
         Puoi accedere alle funzionalità della piattaforma dal menù laterale:
       </p>
       <ul>
