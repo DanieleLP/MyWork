@@ -304,7 +304,7 @@ const ActivityComponent = () => {
         <hr />
         <div className="activityComponent__interaction">
           <div className="activityComponent__chat">
-            <p>Messaggi:</p>
+            <p>Commenti:</p>
             <div className="activityComponent__chat-container">
               <ActivityChatComponent />
             </div>
