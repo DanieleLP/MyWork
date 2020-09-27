@@ -27,10 +27,6 @@ ReactJS, HTML5, CSS3, JavaScript.
 MaterialUI Icons, Avatar, Tooltip.
 Firebase e Firestore.
 
-## Per visualizzare l'applicazione live
-
-Visita [https://mywork-final.web.app](https://mywork-final.web.app)
-
 ## Per testare l'applicazione in locale
 
 Sono necessarie alcune dipendenze per avviare l'applicazione in locale
