@@ -1,3 +1,8 @@
+/* 
+  HomeComponent
+  component per la pagina iniziale;
+  mostra le funzionalità dell'applicazione
+*/
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { db } from "../../../firebase";
@@ -14,6 +19,7 @@ const HomeComponent = () => {
   const [notifications, setNotifications] = useState([]);
   const { currentUser } = useContext(AuthContext);
 
+  // fetch in tempo reale dei dati dell'utente attuale
   useEffect(() => {
     let isRendered = false;
     db.collection("users")
@@ -26,6 +32,7 @@ const HomeComponent = () => {
         })
       );
 
+    // fetch in tempo reale delle notifiche non lette dell'utente attuale
     db.collection("users")
       .where("uid", "==", currentUser.uid)
       .onSnapshot((snap) =>

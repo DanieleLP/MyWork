@@ -1,3 +1,4 @@
+// funzione per parsare i codici di errore dell'auth e ritornare un testo leggibile
 const errorParser = (e) => {
     switch (e) {
         case "auth/email-already-exists":

@@ -1,3 +1,7 @@
+/* 
+  RegisterComponent
+  component di auth per effettuare la registrazione alla piattaforma
+*/
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import firebaseApp, { db } from "../../firebase";
@@ -13,6 +17,9 @@ const RegisterComponent = () => {
   const [error, setError] = useState("");
   let history = useHistory();
 
+  // funzione per registrare un nuovo account
+  // auth di Firebase per registrarsi con email e password
+  // salvataggio di ulteriori dettagli per l'utente (nome, cognome) nel db
   const register = (e) => {
     e.preventDefault();
     if (password !== repPassword) {

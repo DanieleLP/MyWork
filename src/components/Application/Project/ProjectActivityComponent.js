@@ -1,15 +1,19 @@
+/* 
+  ProjectActivityComponent
+  component per la preview di una attività nella pagina dei progetti
+*/
 import React from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import "./ProjectActivityComponent.css";
 
 const ProjectActivityComponent = (props) => {
   const { id, name, description, status, timestamp } = props.activity;
+  const history = useHistory();
+  const location = useLocation();
 
   let ts = timestamp
     ? new Date(timestamp.seconds * 1000).toLocaleString()
     : null;
-  const history = useHistory();
-  const location = useLocation();
 
   return (
     <div

@@ -1,3 +1,8 @@
+/* 
+  AddProjectModalComponent
+  component per il modal di aggiunta di un nuovo progetto;
+  fornisce funzionalità per l'aggiunta di un nuovo progetto
+*/
 import React, { useState, useEffect, useContext } from "react";
 import { db, Timestamp } from "../../../firebase";
 import { AuthContext } from "../../../providers/Auth";
@@ -12,6 +17,7 @@ const AddProjectModalComponent = ({ isShowing, hide }) => {
   const [participants, setParticipants] = useState([]);
   const [options, setOptions] = useState([]);
 
+  // fetch real-time dei dati dell'utente attuale
   useEffect(() => {
     db.collection("users").onSnapshot((snapshot) => {
       setOptions(
@@ -31,6 +37,8 @@ const AddProjectModalComponent = ({ isShowing, hide }) => {
     clearSearch: "Cancella",
   };
 
+  // funzione per l'aggiunta di un nuovo progetto
+  // invio della notifica a tutti gli utenti aggiunti come partecipanti al progetto
   const createProject = (e) => {
     e.preventDefault();
     if (name) {

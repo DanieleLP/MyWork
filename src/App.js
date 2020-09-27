@@ -1,3 +1,8 @@
+/* 
+  App
+  component principale per la piattaforma
+  funzionalità di routing --> visualizzazione dei componenti
+*/
 import React, { useContext, useEffect, useState } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import firebaseApp, { db } from "./firebase";
@@ -18,10 +23,12 @@ const App = () => {
   const { currentUser } = useContext(AuthContext);
   const [name, setName] = useState("");
 
+  // se si chiude il browser/tab effettua il logout
   window.addEventListener("beforeunload", (e) => {
     firebaseApp.auth().signOut();
   });
 
+  // fetch real-time dei dati dell'utente attuale
   useEffect(() => {
     if (currentUser) {
       db.collection("users")

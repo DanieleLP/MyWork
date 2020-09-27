@@ -1,3 +1,8 @@
+/* 
+  AddActivityModalComponent
+  component per il modal di aggiunta di una attività;
+  fornisce funzionalità per l'aggiunta di una nuova attività
+*/
 import React, { useState, useEffect, useContext } from "react";
 import { db, Timestamp } from "../../../firebase";
 import { AuthContext } from "../../../providers/Auth";
@@ -15,6 +20,8 @@ const AddActivityModalComponent = ({ projectId, isShowing, hide }) => {
   const [participants, setParticipants] = useState([]);
   const [options, setOptions] = useState([]);
 
+  // fetch real-time dei partecipanti al progetto per il quale si vuole aggiungere una attività
+  // popolazione delle opzioni della select
   useEffect(() => {
     db.collection("projects")
       .doc(projectId)
@@ -38,6 +45,8 @@ const AddActivityModalComponent = ({ projectId, isShowing, hide }) => {
     clearSearch: "Cancella",
   };
 
+  // funzione per aggiungere una nuova attività
+  // invio della notifica agli utenti partecipanti alla nuova attività aggiunta
   const createActivity = (e) => {
     e.preventDefault();
     if (name && description && status && participants) {

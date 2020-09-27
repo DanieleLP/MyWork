@@ -1,3 +1,6 @@
+/* 
+  entry point per l'app
+*/
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
@@ -6,6 +9,7 @@ import "./index.css";
 
 import App from "./App";
 
+// set del tema di base a "default" se non è settato nel localstorage
 document.body.classList.add(localStorage.getItem("theme") || "default");
 
 ReactDOM.render(

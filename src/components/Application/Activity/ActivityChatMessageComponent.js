@@ -1,3 +1,8 @@
+/* 
+  ActivityChatMessageComponent
+  component del singolo messaggio;
+*/
+
 import React, { useEffect, useState } from "react";
 import { db } from "../../../firebase";
 import "./ActivityChatMessageComponent.css";
@@ -9,6 +14,7 @@ const ActivityChatMessageComponent = (props) => {
   const { user, message, timestamp } = props.message;
   const [name, setName] = useState("");
 
+  // fetch real-time dei dati dell'utente per popolare il messaggio
   useEffect(() => {
     db.collection("users")
       .where("uid", "==", user)

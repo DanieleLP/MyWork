@@ -1,3 +1,7 @@
+/* 
+  file di configurazione per firebase
+*/
+
 import firebase from "firebase";
 import "firebase/auth";
 

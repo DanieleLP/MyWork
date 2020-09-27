@@ -1,3 +1,7 @@
+/* 
+  SidebarComponent
+  component per l'intera sidebar, contentente le funzionalità della piattaforma
+*/
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import firebaseApp, { db } from "../../../firebase";
@@ -18,6 +22,7 @@ const SidebarComponent = (props) => {
   const history = useHistory();
   const [notifications, setNotifications] = useState([]);
 
+  // fetch real-time dell'utente e delle notifiche non lette
   useEffect(() => {
     const uid = props.user.currentUser.uid;
     db.collection("users")
@@ -38,6 +43,7 @@ const SidebarComponent = (props) => {
       );
   }, [props]);
 
+  // fetch real-time dei progetti dell'utente attuale
   useEffect(() => {
     const uid = props.user.currentUser.uid;
     db.collection("projects").onSnapshot((snapshot) => {

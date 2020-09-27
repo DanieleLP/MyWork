@@ -1,3 +1,4 @@
+// funzione per lo switch del tema in uso
 const themeChanger = (className) => {
     let themes = ["default", "yellow", "green", "blue", "petrol", "smokeblue"]
     let selectedTheme = ""

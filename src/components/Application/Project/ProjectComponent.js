@@ -1,3 +1,7 @@
+/* 
+  ProjectComponent
+  component per la visualizzazione dei dettagli di un progetto, comprese le preview delle sue attività
+*/
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { db } from "../../../firebase";
@@ -17,6 +21,8 @@ const ProjectComponent = () => {
   const { show, toggle } = useModal();
   const history = useHistory();
 
+  // fetch real-time dei dati del progetto e delle attività comprese
+  // se l'utente non fa parte del progetto ritorna errore
   useEffect(() => {
     db.collection("projects")
       .doc(projectId)

@@ -1,3 +1,7 @@
+/* 
+  useModal
+  custom hook per le funzionalità dei modal
+*/
 import { useState } from "react";
 
 const useModal = () => {

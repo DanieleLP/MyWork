@@ -1,3 +1,8 @@
+/* 
+  NotificationsComponent
+  component per la pagina delle notifiche
+  fornisce funzionalità di lettura e check delle notifiche
+*/
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { db } from "../../../firebase";
@@ -7,6 +12,7 @@ const NotificationsComponent = () => {
   const { userUid } = useParams();
   const [notifications, setNotifications] = useState([]);
 
+  // fetch real time delle notifiche dell'utente attuale, in ordine decrescente di tempo
   useEffect(() => {
     db.collection("users")
       .where("uid", "==", userUid)
@@ -28,6 +34,7 @@ const NotificationsComponent = () => {
       );
   }, [userUid]);
 
+  // funzione per "leggere" la notifica
   const mark = (e, notification) => {
     db.collection("users")
       .where("uid", "==", userUid)
@@ -43,6 +50,7 @@ const NotificationsComponent = () => {
       );
   };
 
+  // funzione per "leggere" tutte le notifiche
   const markAll = (e) => {
     db.collection("users")
       .where("uid", "==", userUid)

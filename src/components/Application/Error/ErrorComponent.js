@@ -1,3 +1,7 @@
+/* 
+  ErrorComponent
+  component per eventuali errori
+*/
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./ErrorComponent.css";

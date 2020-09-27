@@ -1,3 +1,7 @@
+/* 
+  SettingsComponent
+  component per la pagina delle impostazioni dell'utente
+*/
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../../../firebase";
@@ -10,6 +14,7 @@ const SettingsComponent = () => {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
 
+  // fetch real-time dei dati dell'utente attuale
   useEffect(() => {
     let isRendered = false;
     db.collection("users")
@@ -18,6 +23,8 @@ const SettingsComponent = () => {
         snapshot.docs.forEach((user) => {
           if (!isRendered) {
             setUser(user.data());
+            setName(user.data().name);
+            setLastName(user.data().lastName);
           }
         })
       );
@@ -26,6 +33,7 @@ const SettingsComponent = () => {
     };
   }, [userUid]);
 
+  // funzione per aggiornare il nome e cognome dell'utente
   const update = (e) => {
     if (name && lastName) {
       db.collection("users")
@@ -44,6 +52,7 @@ const SettingsComponent = () => {
     setLastName("");
   };
 
+  // chiamata alla funzione della libreria changeTheme per cambiare il tema dell'applicazione
   const changeTheme = (e) => {
     localStorage.setItem("theme", themeChanger(e.currentTarget.className));
   };

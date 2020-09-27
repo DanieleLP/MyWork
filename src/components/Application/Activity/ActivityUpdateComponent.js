@@ -1,3 +1,8 @@
+/* 
+  ActivityUpdateComponent
+  component per il singolo update di una attività;
+*/
+
 import React, { useEffect, useState } from "react";
 import { db } from "../../../firebase";
 import "./ActivityUpdateComponent.css";
@@ -9,6 +14,7 @@ const ActivityUpdateComponent = (props) => {
     ? new Date(timestamp.seconds * 1000).toLocaleString()
     : null;
 
+  // fetch real-time dei dati dell'utente che ha effettuato l'update
   useEffect(() => {
     db.collection("users")
       .where("uid", "==", user)

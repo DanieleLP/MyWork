@@ -1,3 +1,10 @@
+/* 
+  ActivityComponent
+  component per i dettagli specifici di una attività;
+  fornisce le funzionalità di aggiornamento dell'attività;
+  fornisce le funzionalità di AGGIUNTA di un aggiornamento nello sviluppo dell'attività.
+*/
+
 import React, { useEffect, useState, useContext } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { db, Timestamp } from "../../../firebase";
@@ -22,6 +29,7 @@ const ActivityComponent = () => {
   const history = useHistory();
   const { currentUser } = useContext(AuthContext);
 
+  // fetch real-time dei dati dell'attività e popolazione degli stati (attività, partecipanti, status)
   useEffect(() => {
     db.collection("projects")
       .doc(projectId)
@@ -43,6 +51,8 @@ const ActivityComponent = () => {
       });
   }, [projectId, activityId, currentUser, history]);
 
+  // fetch real-time di tutti i partecipanti al progetto a cui appartiene l'attività
+  // utile per eventuale aggiunta di nuovi partecipanti all'attività
   useEffect(() => {
     db.collection("projects")
       .doc(projectId)
@@ -58,6 +68,7 @@ const ActivityComponent = () => {
       });
   }, [projectId, history]);
 
+  // fetch real-time di tutti gli update di una attività in ordine di tempo decrescente
   useEffect(() => {
     db.collection("projects")
       .doc(projectId)
@@ -71,6 +82,8 @@ const ActivityComponent = () => {
       });
   }, [projectId, activityId]);
 
+  // funzione per l'aggiornamento di una attività (status, partecipanti)
+  // invio della notifica di aggiornamento a tutti gli utenti partecipanti all'attività
   const update = (e) => {
     if (participants && status) {
       const updParticipants = participants.map((participant) => ({
@@ -126,6 +139,8 @@ const ActivityComponent = () => {
     }
   };
 
+  // funzione per l'aggiunta di un aggiornamento di sviluppo dell'attività
+  // invio della notifica a tutti gli utenti partecipanti all'attività
   const addUpdate = (e) => {
     e.preventDefault();
     if (desc !== "" && hours !== "") {

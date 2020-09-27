@@ -1,3 +1,7 @@
+/* 
+  Auth
+  auth provider e context per accedere allo user in tutta l'applicazione
+*/
 import React, { useEffect, useState } from "react";
 import firebaseApp from "../firebase";
 

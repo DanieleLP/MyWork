@@ -1,3 +1,9 @@
+/* 
+  ActivityChatComponent
+  component contenitore dei messaggi della chat;
+  fornisce funzionalità di invio dei messaggi
+*/
+
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { db, Timestamp } from "../../../firebase";
@@ -12,6 +18,7 @@ const ActivityChatComponent = () => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
+  // fetch realtime di tutti i messaggi presenti per l'attività con activityId del progetto con projectId
   useEffect(() => {
     db.collection("projects")
       .doc(projectId)
@@ -24,6 +31,7 @@ const ActivityChatComponent = () => {
       );
   }, [activityId, projectId]);
 
+  // invio real-time del commento e della notifica a tutti gli utenti partecipanti a questa attività
   const submit = (e) => {
     db.collection("projects")
       .doc(projectId)

@@ -1,3 +1,7 @@
+/* 
+  LoginComponent
+  component di auth per effettuare il login nella piattaforma
+*/
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import firebaseApp from "../../firebase";
@@ -11,6 +15,8 @@ const LoginComponent = () => {
 
   let history = useHistory();
 
+  // funzione per effettuare il login
+  // auth di Firebase con email e password
   const login = (e) => {
     e.preventDefault();
     firebaseApp
