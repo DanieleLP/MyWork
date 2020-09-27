@@ -88,15 +88,19 @@ const SettingsComponent = () => {
               onClick={(e) => changeTheme(e)}
             ></div>
             <div
-              className="settingsComponent__theme lightblue"
+              className="settingsComponent__theme green"
               onClick={(e) => changeTheme(e)}
             ></div>
             <div
-              className="settingsComponent__theme purple"
+              className="settingsComponent__theme blue"
               onClick={(e) => changeTheme(e)}
             ></div>
             <div
               className="settingsComponent__theme petrol"
+              onClick={(e) => changeTheme(e)}
+            ></div>
+            <div
+              className="settingsComponent__theme smokeblue"
               onClick={(e) => changeTheme(e)}
             ></div>
           </div>

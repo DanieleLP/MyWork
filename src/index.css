@@ -30,16 +30,22 @@
   --main-color-accent-secondary: rgb(255, 193, 7, 0.98);
 }
 
-.lightblue {
-  --main-color: rgb(3, 169, 244, 0.95);
-  --main-color-accent: rgb(3, 169, 244, 1);
-  --main-color-accent-secondary: rgb(3, 169, 244, 0.98);
+.blue {
+  --main-color: rgb(1, 87, 155, 0.95);
+  --main-color-accent: rgb(1, 87, 155, 1);
+  --main-color-accent-secondary: rgb(1, 87, 155, 0.98);
 }
 
-.purple {
-  --main-color: rgb(103, 58, 183, 0.95);
-  --main-color-accent: rgb(103, 58, 183, 1);
-  --main-color-accent-secondary: rgb(103, 58, 183, 0.98);
+.green {
+  --main-color: rgb(27, 94, 32, 0.95);
+  --main-color-accent: rgb(27, 94, 32, 1);
+  --main-color-accent-secondary: rgb(27, 94, 32, 0.98);
+}
+
+.smokeblue {
+  --main-color: rgb(84, 110, 122, 0.95);
+  --main-color-accent: rgb(84, 110, 122, 1);
+  --main-color-accent-secondary: rgb(84, 110, 122, 0.98);
 }
 
 * {

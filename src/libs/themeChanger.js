@@ -1,5 +1,5 @@
 const themeChanger = (className) => {
-    let themes = ["default", "yellow", "lightblue", "purple", "petrol"]
+    let themes = ["default", "yellow", "green", "blue", "petrol", "smokeblue"]
     let selectedTheme = ""
     themes.forEach((theme) => {
         if (className.includes(theme)) {

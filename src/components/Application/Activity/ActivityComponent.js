@@ -28,14 +28,7 @@ const ActivityComponent = () => {
       .collection("activities")
       .doc(activityId)
       .onSnapshot((act) => {
-        if (
-          act.data() &&
-          act
-            .data()
-            .participants.some(
-              (participant) => participant.uid === currentUser.uid
-            )
-        ) {
+        if (act.data()) {
           setActivity(act.data());
           setParticipants(
             act.data().participants.map((participant) => ({
