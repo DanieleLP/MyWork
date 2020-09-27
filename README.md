@@ -37,8 +37,8 @@ Sono necessarie alcune dipendenze per avviare l'applicazione in locale
 
 ### Node.js e npm
 
-Verifica che node e npm siano installati usando i comandi `node -v` e `npm -v`.
-Se non fossero installati, puoi installarli scaricando l'installer ufficiale da [https://nodejs.org/it/][nodejs.org] oppure utilizzando [https://brew.sh/index_it][brew] su MacOS/Linux, `brew update` e poi `brew install node`.
+Verifica che node e npm siano installati usando i comandi `node -v` e `npm -v`. <br />
+Se non fossero installati, puoi installarli scaricando l'installer ufficiale da [https://nodejs.org/it/](nodejs.org) oppure utilizzando [https://brew.sh/index_it](brew) su MacOS/Linux, `brew update` e poi `brew install node`.
 Su Windows potrebbe essere necessario aspettare qualche minuto e installare Chocolatey per compilare alcune dipendenze (viene richiesto da Node.js).
 Al termine dell'installazione verificare di nuovo che node e npm siano installati.
 
@@ -50,7 +50,7 @@ Per installare tutte le dipendenze del progetto
 
 ### `npm start`
 
-Per avviare l'applicazione in modalità DEV.
+Per avviare l'applicazione in modalità DEV. <br />
 Visita [http://localhost:3000](http://localhost:3000) (se non hai cambiato la porta) per visualizzare l'applicazione.
 
 ### `npm run build`
