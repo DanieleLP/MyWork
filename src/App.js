@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { db } from "./firebase";
-import "./App.css";
 import { Route, Switch, Redirect } from "react-router-dom";
+import firebaseApp, { db } from "./firebase";
 import { AuthContext } from "./providers/Auth";
+import "./App.css";
+
 import HomeComponent from "./components/Application/Home/HomeComponent";
 import SidebarComponent from "./components/Application/Sidebar/SidebarComponent";
 import ProjectComponent from "./components/Application/Project/ProjectComponent";
@@ -16,6 +17,10 @@ import SettingsComponent from "./components/Application/Settings/SettingsCompone
 const App = () => {
   const { currentUser } = useContext(AuthContext);
   const [name, setName] = useState("");
+
+  window.addEventListener("beforeunload", (e) => {
+    firebaseApp.auth().signOut();
+  });
 
   useEffect(() => {
     if (currentUser) {

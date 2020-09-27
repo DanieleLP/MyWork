@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../../providers/Auth";
 import { db } from "../../../firebase";
+import { AuthContext } from "../../../providers/Auth";
+import "./HomeComponent.css";
+
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SettingsIcon from "@material-ui/icons/Settings";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import AddIcon from "@material-ui/icons/Add";
 
-import "./HomeComponent.css";
 const HomeComponent = () => {
   const [name, setName] = useState("");
   const [notifications, setNotifications] = useState([]);

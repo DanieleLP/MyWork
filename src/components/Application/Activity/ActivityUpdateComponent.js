@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../../firebase";
 import "./ActivityUpdateComponent.css";
+
 const ActivityUpdateComponent = (props) => {
   const { user, description, hours, timestamp } = props.update;
   const [name, setName] = useState("");

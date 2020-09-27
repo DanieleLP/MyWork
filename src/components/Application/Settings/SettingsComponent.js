@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { db } from "../../../firebase";
 import { themeChanger } from "../../../libs/themeChanger";
 import "./SettingsComponent.css";
+
 const SettingsComponent = () => {
   const { userUid } = useParams();
   const [user, setUser] = useState({});
@@ -44,7 +45,7 @@ const SettingsComponent = () => {
   };
 
   const changeTheme = (e) => {
-    themeChanger(e.currentTarget.className);
+    localStorage.setItem("theme", themeChanger(e.currentTarget.className));
   };
 
   return (

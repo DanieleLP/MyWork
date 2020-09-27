@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
-import "./SidebarComponent.css";
 import firebaseApp, { db } from "../../../firebase";
+import useModal from "../../../hooks/useModal";
+import "./SidebarComponent.css";
+
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SettingsIcon from "@material-ui/icons/Settings";
 import NotificationsIcon from "@material-ui/icons/Notifications";
@@ -9,7 +11,6 @@ import AppsIcon from "@material-ui/icons/Apps";
 import AddIcon from "@material-ui/icons/Add";
 import SidebarProjectComponent from "./SidebarProjectComponent";
 import AddProjectModalComponent from "../Modal/AddProjectModalComponent";
-import useModal from "../../../hooks/useModal";
 
 const SidebarComponent = (props) => {
   const [projects, setProjects] = useState([]);

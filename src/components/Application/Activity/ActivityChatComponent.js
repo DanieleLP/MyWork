@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 import { db, Timestamp } from "../../../firebase";
 import { AuthContext } from "../../../providers/Auth";
 import "./ActivityChatComponent.css";
+
 import ActivityChatMessageComponent from "./ActivityChatMessageComponent";
+
 const ActivityChatComponent = () => {
   const { activityId, projectId } = useParams();
   const { currentUser } = useContext(AuthContext);

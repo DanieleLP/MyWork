@@ -1,12 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import "./ProjectComponent.css";
 import { db } from "../../../firebase";
+import { AuthContext } from "../../../providers/Auth";
+import useModal from "../../../hooks/useModal";
+import "./ProjectComponent.css";
+
 import AddIcon from "@material-ui/icons/Add";
 import ProjectActivityComponent from "./ProjectActivityComponent";
 import AddActivityModalComponent from "../Modal/AddActivityModalComponent";
-import { AuthContext } from "../../../providers/Auth";
-import useModal from "../../../hooks/useModal";
 
 const ProjectComponent = () => {
   const { projectId } = useParams();

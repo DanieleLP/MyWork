@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import firebaseApp, { db } from "../../firebase";
 import errorParser from "../../libs/errorParser";
 import "./RegisterComponent.css";
+
 const RegisterComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

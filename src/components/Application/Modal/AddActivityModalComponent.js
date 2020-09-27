@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import MultiSelect from "react-multi-select-component";
-import { AuthContext } from "../../../providers/Auth";
 import { db, Timestamp } from "../../../firebase";
-import { Close } from "@material-ui/icons";
+import { AuthContext } from "../../../providers/Auth";
 import "./AddActivityModalComponent.css";
+
+import { Close } from "@material-ui/icons";
+import MultiSelect from "react-multi-select-component";
 
 const AddActivityModalComponent = ({ projectId, isShowing, hide }) => {
   const [name, setName] = useState("");

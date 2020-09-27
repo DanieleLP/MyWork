@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { db } from "../../../firebase";
-
 import "./NotificationsComponent.css";
+
 const NotificationsComponent = () => {
   const { userUid } = useParams();
   const [notifications, setNotifications] = useState([]);
@@ -61,7 +61,6 @@ const NotificationsComponent = () => {
       );
   };
 
-  console.log(notifications);
   return (
     notifications &&
     notifications !== undefined && (

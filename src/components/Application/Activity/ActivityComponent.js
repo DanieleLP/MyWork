@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
-import MultiSelect from "react-multi-select-component";
+import { useHistory, useParams } from "react-router-dom";
 import { db, Timestamp } from "../../../firebase";
-import { useParams } from "react-router-dom";
 import { AuthContext } from "../../../providers/Auth";
+import "./ActivityComponent.css";
+
+import MultiSelect from "react-multi-select-component";
 import ActivityUpdateComponent from "./ActivityUpdateComponent";
 import ActivityChatComponent from "./ActivityChatComponent";
-
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
-import "./ActivityComponent.css";
 
 const ActivityComponent = () => {
   const { projectId, activityId } = useParams();

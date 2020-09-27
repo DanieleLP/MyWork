@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./ErrorComponent.css";
+
 const ErrorComponent = (props) => {
   const history = useHistory();
 

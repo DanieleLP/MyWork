@@ -5,6 +5,7 @@
 .sidebarComponent__container {
     height: 100%;
     width: 15vw;
+    min-width: 20rem;
     background-color: var(--main-color);
 }
 

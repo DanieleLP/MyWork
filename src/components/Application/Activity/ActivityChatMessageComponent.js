@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../../firebase";
-import Avatar from "@material-ui/core/Avatar";
 import "./ActivityChatMessageComponent.css";
+
+import Avatar from "@material-ui/core/Avatar";
 
 const ActivityChatMessageComponent = (props) => {
   const { user, message, timestamp } = props.message;
