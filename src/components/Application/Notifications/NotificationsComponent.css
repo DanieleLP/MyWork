@@ -46,3 +46,9 @@
     background-color: var(--main-color-accent-secondary);
     transition: all .2s;
 }
+
+@media (max-width: 768px) {
+    .notificationsComponent {
+        padding: 0 2rem;
+    }
+}

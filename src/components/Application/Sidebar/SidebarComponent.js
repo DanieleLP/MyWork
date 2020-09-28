@@ -70,7 +70,12 @@ const SidebarComponent = (props) => {
         }`}
       >
         <div className="sidebarComponent__header">
-          <Link to="/">
+          <Link
+            to="/"
+            onClick={(e) => {
+              props.toggled.toggleMenu(e);
+            }}
+          >
             <h2>MyWork</h2>
           </Link>
           <p>
