@@ -98,14 +98,22 @@ const ActivityChatComponent = () => {
             />
           ))}
       </div>
-      <input
-        type="text"
-        name="message"
-        value={message}
-        onChange={(e) => setMessage(e.currentTarget.value)}
-        placeholder="Inserisci un messaggio (premi invio per inviare)..."
-        onKeyDown={(e) => (e.keyCode === 13 ? submit(e) : null)}
-      />
+      <div className="activityChatComponent__input">
+        <input
+          type="text"
+          name="message"
+          value={message}
+          onChange={(e) => setMessage(e.currentTarget.value)}
+          placeholder="Inserisci un messaggio (premi invio per inviare)..."
+          onKeyDown={(e) => (e.keyCode === 13 ? submit(e) : null)}
+        />
+        <div
+          className="activityChatComponent__inputBtn"
+          onClick={(e) => submit(e)}
+        >
+          <p>Invia</p>
+        </div>
+      </div>
     </div>
   );
 };

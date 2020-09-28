@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     position: fixed;
-    z-index: 1;
+    z-index: 4;
     left: 0;
     top: 0;
     width: 100%;
@@ -95,6 +95,7 @@
     text-align: center;
     transition: all 0.2s;
     border: none;
+    font-size: 14px;
 }
 
 .addActivityModalComponent__content .multi-select {
@@ -156,4 +157,51 @@
 .addActivityModalComponent__close .MuiSvgIcon-root {
     fill: var(--main-color);
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .addActivityModalComponent__container {
+        width: 100%;
+        min-height: 100vh;
+        padding: 1rem;
+    }
+
+    .addActivityModalComponent__content p {
+        text-align: center;
+        font-size: 12px;
+        margin-bottom: 0;
+    }
+
+    .addActivityModalComponent__content input {
+        width: 100%;
+        padding: 0;
+        height: 2rem;
+    }
+
+    .addActivityModalComponent__content textarea {
+        width: 100%;
+        padding: 0;
+        height: 4rem;
+    }
+
+    .addActivityModalComponent__content textarea::placeholder {
+        font-size: 14px;
+    }
+
+    .addActivityModalComponent__content .multi-select {
+        width: 100%;
+    }
+
+    .addActivityModalComponent__content select {
+        width: 100%;
+    }
+
+    .addActivityModalComponent__btn {
+        width: 100%;
+        padding: 0;
+        height: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

@@ -64,7 +64,11 @@ const SidebarComponent = (props) => {
 
   return (
     <div className="sidebarComponent">
-      <div className="sidebarComponent__container">
+      <div
+        className={`sidebarComponent__container ${
+          props.toggled.toggled ? "show" : "null"
+        }`}
+      >
         <div className="sidebarComponent__header">
           <Link to="/">
             <h2>MyWork</h2>
@@ -79,9 +83,10 @@ const SidebarComponent = (props) => {
           <div className="sidebarComponent__header-addons">
             <div className="sidebarComponent__notification">
               <NotificationsIcon
-                onClick={() =>
-                  history.push(`/notifications/${props.user.currentUser.uid}`)
-                }
+                onClick={(e) => {
+                  history.push(`/notifications/${props.user.currentUser.uid}`);
+                  props.toggled.toggleMenu(e);
+                }}
               />
               {notifications && notifications.length > 0 ? (
                 <span className="sidebarComponent__notification-badge animated">
@@ -90,9 +95,10 @@ const SidebarComponent = (props) => {
               ) : null}
             </div>
             <SettingsIcon
-              onClick={() =>
-                history.push(`/settings/${props.user.currentUser.uid}`)
-              }
+              onClick={(e) => {
+                history.push(`/settings/${props.user.currentUser.uid}`);
+                props.toggled.toggleMenu(e);
+              }}
             />
             <ExitToAppIcon onClick={() => firebaseApp.auth().signOut()} />
           </div>
@@ -106,6 +112,7 @@ const SidebarComponent = (props) => {
               key={project.id}
               id={project.id}
               name={project.name}
+              toggled={props.toggled}
             />
           ))}
           <div className="sidebarComponent__addProject" onClick={toggle}>

@@ -2,3 +2,34 @@
     display: flex;
     min-height: 100vh;
 }
+
+.sidebarComponent__toggler {
+    margin: .5rem;
+    position: absolute;
+    background-color: var(--main-color);
+    border-radius: .5rem;
+    width: 2rem;
+    height: 2rem;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.sidebarComponent__toggler .MuiSvgIcon-root {
+    fill: white;
+    transition: linear .5s;
+}
+
+.sidebarComponent__toggler.shown .MuiSvgIcon-root {
+    fill: white;
+    transform: rotate(-180deg);
+    transition: linear .5s;
+}
+
+@media (max-width: 768px) {
+    .sidebarComponent__toggler {
+        display: flex;
+    }
+}

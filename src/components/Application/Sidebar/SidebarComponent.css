@@ -137,3 +137,23 @@
     transform: rotate(180deg);
     transition: all .5s;
 }
+
+@media (max-width: 768px) {
+    .sidebarComponent__container {
+        z-index: 1;
+        position: absolute;
+        width: 100%;
+        display: block;
+        left: -100%;
+        transition: linear .5s;
+    }
+
+    .sidebarComponent__container.show {
+        background-color: var(--main-color-accent);
+        position: absolute;
+        width: 100%;
+        display: block;
+        left: 0;
+        transition: linear .5s;
+    }
+}

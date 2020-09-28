@@ -43,3 +43,31 @@
     width: 50%;
     margin: 1rem;
 }
+
+@media (max-width: 768px) {
+
+    .homeComponent h2 {
+        text-align: center;
+        padding-top: 3rem;
+    }
+
+    .homeComponent hr {
+        width: 90%;
+    }
+
+    .homeComponent__info-head {
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .homeComponent ul {
+        margin: 0;
+        padding: 1rem;
+    }
+
+    .homeComponent ul li {
+        padding: .3rem;
+        min-height: 1.5rem;
+        display: inline-flex;
+    }
+}

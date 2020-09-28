@@ -13,12 +13,13 @@ const SidebarProjectComponent = (props) => {
   const history = useHistory();
 
   // funzione per visualizzare i dettagli del progetto
-  const selectProject = () => {
+  const selectProject = (e) => {
     if (props.id) {
       history.push(`/projects/${props.id}`);
     } else {
       history.push(`/projects/${props.name}`);
     }
+    props.toggled.toggleMenu(e);
   };
 
   return (

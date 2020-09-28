@@ -127,7 +127,7 @@ const AddActivityModalComponent = ({ projectId, isShowing, hide }) => {
               placeholder="Inserisci una descrizione per l'attività"
               onChange={(e) => setDescription(e.currentTarget.value)}
             />
-            <p> Seleziona i partecipanti all 'attività:</p>
+            <p> Seleziona i partecipanti all'attività:</p>
             <MultiSelect
               overrideStrings={overrideStrings}
               options={options}
@@ -135,7 +135,7 @@ const AddActivityModalComponent = ({ projectId, isShowing, hide }) => {
               onChange={setParticipants}
               labelledBy={"Seleziona i partecipanti"}
             />
-            <p> Status dell 'attività:</p>
+            <p> Status dell'attività:</p>
             <select
               value={status}
               onChange={(e) => setStatus(e.currentTarget.value)}
@@ -144,7 +144,7 @@ const AddActivityModalComponent = ({ projectId, isShowing, hide }) => {
               <option value="inProgress"> IN PROGRESSO </option>
               <option value="complete"> COMPLETATA </option>
             </select>
-            <p> Creatore dell 'attività:</p>
+            <p> Creatore dell'attività:</p>
             <input
               type="text"
               name="owner"

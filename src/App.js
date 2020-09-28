@@ -5,7 +5,7 @@
 */
 import React, { useContext, useEffect, useState } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import firebaseApp, { db } from "./firebase";
+import { db } from "./firebase";
 import { AuthContext } from "./providers/Auth";
 import "./App.css";
 
@@ -18,15 +18,17 @@ import RegisterComponent from "./components/Auth/RegisterComponent";
 import ErrorComponent from "./components/Application/Error/ErrorComponent";
 import NotificationsComponent from "./components/Application/Notifications/NotificationsComponent";
 import SettingsComponent from "./components/Application/Settings/SettingsComponent";
+import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 
 const App = () => {
   const { currentUser } = useContext(AuthContext);
   const [name, setName] = useState("");
+  const [toggled, setToggled] = useState(false);
 
   // se si chiude il browser/tab effettua il logout
-  window.addEventListener("beforeunload", (e) => {
-    firebaseApp.auth().signOut();
-  });
+  // window.addEventListener("beforeunload", (e) => {
+  //   firebaseApp.auth().signOut();
+  // });
 
   // fetch real-time dei dati dell'utente attuale
   useEffect(() => {
@@ -41,9 +43,23 @@ const App = () => {
     }
   }, [currentUser]);
 
+  const toggleMenu = (e) => {
+    console.log("hello");
+    setToggled((prev) => !prev);
+  };
+
   return currentUser ? (
     <div className="App">
-      <SidebarComponent user={{ name, currentUser }} />
+      <SidebarComponent
+        toggled={{ toggled, toggleMenu }}
+        user={{ name, currentUser }}
+      />
+      <div
+        className={`sidebarComponent__toggler ${toggled ? "shown" : null}`}
+        onClick={(e) => toggleMenu(e)}
+      >
+        <MenuOpenIcon />
+      </div>
       <Switch>
         <Route exact path="/projects/:projectId/activity/:activityId">
           <ActivityComponent />

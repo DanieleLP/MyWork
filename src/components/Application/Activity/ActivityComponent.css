@@ -183,6 +183,7 @@
 
 .activityComponent__interaction {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .activityComponent__chat {
@@ -216,4 +217,85 @@
     min-height: 18rem;
     overflow-y: scroll;
     padding-left: 1.7rem;
+}
+
+.activityComponent__mobileSeparator {
+    width: 100%;
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    .activityComponent__mobileSeparator {
+        display: block;
+    }
+
+    .activityComponent__container {
+        padding: 1rem;
+    }
+
+    .activityComponent__backBtn {
+        margin-top: 2rem;
+    }
+
+    .activityComponent__description {
+        text-align: center;
+    }
+
+    .activityComponent__info {
+        width: 100%;
+    }
+
+    .activityComponent__info-el {
+        width: 100%;
+    }
+
+    .activityComponent__info-el h2 {
+        text-align: center;
+    }
+
+    .activityComponent__update {
+        width: 100%;
+    }
+
+    .activityComponent__update-el {
+        width: 100%;
+    }
+
+    .activityComponent__update-updBtn {
+        width: auto;
+    }
+
+    .activityComponent__update-el textarea {
+        padding: 0;
+        height: 4rem;
+    }
+
+    .activityComponent__update-el input {
+        padding: 0;
+        height: 2rem;
+    }
+
+    .activityComponent__interaction {
+        flex-direction: column-reverse;
+    }
+
+    .activityComponent__chat {
+        width: 100%;
+        padding: 0;
+    }
+
+    .activityComponent__chat-container {
+        padding: 0;
+    }
+
+    .activityComponent__updates {
+        width: 100%;
+        padding: 0;
+    }
+
+    .activityComponent__updates-list {
+        padding: 0;
+    }
+
 }

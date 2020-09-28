@@ -6,6 +6,7 @@
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 4;
 }
 
 .errorComponent__container {
@@ -44,4 +45,27 @@
     text-decoration: underline;
     color: var(--main-color-accent);
     transition: all .2s;
+}
+
+@media (max-width: 768px) {
+    .errorComponent__container {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 2rem;
+    }
+
+    .errorComponent__container h2 {
+        margin-bottom: 0;
+    }
+
+
+    .errorComponent__container hr {
+        height: 1px;
+        background-color: var(--main-color);
+        width: 100%;
+        border: 0;
+        margin-bottom: 1rem;
+    }
 }

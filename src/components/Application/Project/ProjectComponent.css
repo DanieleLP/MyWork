@@ -81,14 +81,39 @@
 .projectComponent__activities-backlog {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .projectComponent__activities-inProgress {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .projectComponent__activities-complete {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .projectComponent__container {
+        padding: 1rem;
+    }
+
+    .projectComponent__heading {
+        padding-top: 2rem;
+    }
+
+    .projectComponent__activities {
+        padding: 0;
+    }
+
+    .projectComponent__activities hr {
+        width: 100%;
+    }
+
+    .projectComponent__fabContainer {
+        width: 100%;
+    }
 }

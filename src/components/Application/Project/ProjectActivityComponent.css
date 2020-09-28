@@ -79,3 +79,32 @@
     font-weight: 300;
     font-size: 10px;
 }
+
+@media (max-width: 768px) {
+    .projectActivityComponent {
+        width: 33%;
+        min-height: 4rem;
+    }
+
+    .projectActivityComponent__title {
+        font-size: 13px;
+        line-height: 1em;
+        max-height: 1em;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+    }
+
+    .projectActivityComponent__description {
+        font-size: 10px;
+        -webkit-line-clamp: 1;
+        line-height: 1em;
+        max-height: 1em;
+    }
+
+    .projectActivityComponent__timestamp {
+        font-size: 10px;
+        height: 3em;
+    }
+}

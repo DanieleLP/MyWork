@@ -20,6 +20,7 @@ const ErrorComponent = (props) => {
     >
       <div className="errorComponent__container">
         <h2>Errore</h2>
+        <hr />
         <p>
           La risorsa a cui stai cercando di accedere non esiste oppure il tuo
           accesso è limitato.

@@ -8,7 +8,7 @@ import { db } from "../../../firebase";
 import { themeChanger } from "../../../libs/themeChanger";
 import "./SettingsComponent.css";
 
-const SettingsComponent = () => {
+const SettingsComponent = (props) => {
   const { userUid } = useParams();
   const [user, setUser] = useState({});
 

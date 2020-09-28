@@ -281,6 +281,7 @@ const ActivityComponent = () => {
               </div>
             </div>
           </div>
+          <hr className="activityComponent__mobileSeparator" />
           <div className="activityComponent__update">
             <div className="activityComponent__update-el">
               <p>Aggiungi ore di lavoro:</p>
@@ -324,6 +325,7 @@ const ActivityComponent = () => {
               <ActivityChatComponent />
             </div>
           </div>
+          <hr className="activityComponent__mobileSeparator" />
           <div className="activityComponent__updates">
             <p>Ultimi aggiornamenti:</p>
             <div className="activityComponent__updates-list">

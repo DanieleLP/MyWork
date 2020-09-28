@@ -22,3 +22,42 @@
     min-height: 18rem;
     overflow-y: scroll;
 }
+
+.activityChatComponent__input {
+    width: 95%;
+}
+
+.activityChatComponent__inputBtn {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+
+    .activityChatComponent__input {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .activityChatComponent__input input {
+        width: 80%;
+        padding: 0;
+    }
+
+    .activityChatComponent__inputBtn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20%;
+        height: 2rem;
+        background-color: var(--main-color);
+        color: white;
+        cursor: pointer;
+    }
+
+    .activityChatComponent__input input::placeholder {
+        font-size: 8px;
+    }
+}
