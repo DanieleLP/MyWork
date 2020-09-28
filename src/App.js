@@ -5,7 +5,7 @@
 */
 import React, { useContext, useEffect, useState } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import { db } from "./firebase";
+import firebaseApp, { db } from "./firebase";
 import { AuthContext } from "./providers/Auth";
 import "./App.css";
 
@@ -26,9 +26,9 @@ const App = () => {
   const [toggled, setToggled] = useState(false);
 
   // se si chiude il browser/tab effettua il logout
-  // window.addEventListener("beforeunload", (e) => {
-  //   firebaseApp.auth().signOut();
-  // });
+  window.addEventListener("beforeunload", (e) => {
+    firebaseApp.auth().signOut();
+  });
 
   // fetch real-time dei dati dell'utente attuale
   useEffect(() => {
